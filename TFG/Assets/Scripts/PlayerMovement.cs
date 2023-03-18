@@ -74,10 +74,10 @@ public class PlayerMovement : MonoBehaviour
         anim.SetFloat("yVelocity", rb.velocity.y);
 
         //If crouch botton is pressed the jump action is enabled
-        if (Input.GetButtonDown("Crouch") || Input.GetKey(KeyCode.DownArrow)){
+        if (Input.GetButtonDown("Crouch")){
             crouchPressed = true;
         }
-        else if (Input.GetButtonUp("Crouch") || Input.GetKeyUp(KeyCode.DownArrow))
+        else if (Input.GetButtonUp("Crouch"))
         {
             crouchPressed = false;
         }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5510397794886548963}
   - component: {fileID: 5510397794886548962}
   m_Layer: 12
-  m_Name: tileset-sliced_60
+  m_Name: Ladder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -69,8 +69,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -2039233173
-  m_SortingLayer: 3
+  m_SortingLayerID: -1307979777
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300120, guid: 261212b977f594d5dbc48631a5c1295c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
