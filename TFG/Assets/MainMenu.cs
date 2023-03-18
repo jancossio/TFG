@@ -17,12 +17,25 @@ public class MainMenu : MonoBehaviour
         
     }
 
-    public void PlayGame()
+    public void LevelMenuScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+        PlayerPrefs.SetInt("lifes", 4);
+        PlayerPrefs.SetFloat("healthbar", 100);
+        PlayerPrefs.SetInt("actualLevel", 1);
+        SceneManager.LoadScene("SampleScene");
     }
 
-    public void Exit()
+    public void PlayScene()
+    {
+        SceneManager.LoadScene("Level_0");
+    }
+
+    public void TestScene()
+    {
+        SceneManager.LoadScene("SampleScene");
+    }
+
+    public void QuitGame()
     {
         Application.Quit();
     }
