@@ -8,19 +8,21 @@ public class GroundCheck : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        int temp = collision.gameObject.layer;
-        if (temp == 8 || temp == 10 || temp == 11)
+        //int temp = collision.gameObject.layer;
+        /*if (temp == 8 || temp == 10 || temp == 11)
         {
             isGrounded = true;
-        }
+        }*/
+        isGrounded = true;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        int temp = collision.gameObject.layer;
-        if (temp == 8 || temp == 10 || temp == 11)
-        {
-            isGrounded = false;
-        }
+        //int temp = collision.gameObject.layer;
+        /* if (temp == 8 || temp == 10 || temp == 11)
+         {
+             isGrounded = false;
+         }*/
+        isGrounded = false;
     }
 }

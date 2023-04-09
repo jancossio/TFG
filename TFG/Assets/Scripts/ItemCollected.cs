@@ -11,23 +11,52 @@ public class ItemCollected : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            if(actualItem == 0)
+            if (actualItem <= 1)
             {
                 GetComponent<SpriteRenderer>().enabled = false;
                 gameObject.transform.GetChild(0).gameObject.SetActive(true);
 
-                FindObjectOfType<ItemManager>().itemObtained(0);
-
+                FindObjectOfType<ItemManager>().itemObtained(actualItem);
                 Destroy(gameObject, 0.5f);
+
             }
-            else if (actualItem == 1)
+            else if(actualItem == 2)
             {
-                GetComponent<SpriteRenderer>().enabled = false;
-                gameObject.transform.GetChild(0).gameObject.SetActive(true);
+                bool tempCheck = FindObjectOfType<LifeCount>().checkMissingLifes();
+                if (tempCheck)
+                {
+                    GetComponent<SpriteRenderer>().enabled = false;
+                    gameObject.transform.GetChild(0).gameObject.SetActive(true);
 
-                FindObjectOfType<ItemManager>().itemObtained(1);
+                    FindObjectOfType<ItemManager>().itemObtained(actualItem);
+                    Destroy(gameObject, 0.5f);
+                }
+            }
+            else if (actualItem >=3 && actualItem <= 4)
+            {
+                bool tempCheck = FindObjectOfType<HealthBar>().checkWounded();
+                if (tempCheck)
+                {
+                    GetComponent<SpriteRenderer>().enabled = false;
+                    gameObject.transform.GetChild(0).gameObject.SetActive(true);
 
-                Destroy(gameObject, 0.5f);
+                    FindObjectOfType<ItemManager>().itemObtained(actualItem);
+                    Destroy(gameObject, 0.5f);
+                }
+            }
+            else if (actualItem >= 5)
+            {
+                int ammoCheck = FindObjectOfType<ItemManager>().checkNumPines();
+                Debug.Log("Deberia llegar aqui: " + ammoCheck);
+                if (ammoCheck < 15)
+                {
+                    Debug.Log("Deberia llegar aqui: " + ammoCheck);
+                    GetComponent<SpriteRenderer>().enabled = false;
+                    gameObject.transform.GetChild(0).gameObject.SetActive(true);
+
+                    FindObjectOfType<ItemManager>().itemObtained(actualItem);
+                    Destroy(gameObject, 0.5f);
+                }
             }
         }
     }

@@ -5,9 +5,19 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-    private int vidas;
+    private static int lifes;
     private int actualLevel;
+    private float health;
     private int points;
+
+    public Transform playerCharacter;
+    public Transform respawnPlayerPos;
+
+    
+    private bool gameOver = false;
+    private bool canPauseGame = true;
+    [SerializeField]
+    private GameObject gameOverUI;
 
     private void Awake()
     {
@@ -21,7 +31,8 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
-        vidas = 4;
+        lifes = 4;
+        health = 100f;
         actualLevel = 0;
         points = 0;
     }
@@ -29,17 +40,17 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     int getVidas()
     {
-        return vidas;
+        return lifes;
     }
 
     void incVida()
     {
-        vidas += 1;
+        lifes += 1;
     }
 
     void incPoints(int num)
@@ -54,8 +65,64 @@ public class GameManager : MonoBehaviour
 
     void reset()
     {
-        vidas = 4;
-        actualLevel = 0;
+        lifes = 4;
+        PlayerPrefs.SetInt("lifes", lifes);
+        //actualLevel = 0;
+        //PlayerPrefs.SetInt("actualLevel", actualLevel);
+        PlayerPrefs.SetFloat("healthbar", 100);
         points = 0;
     }
+
+
+    private void RespawnPlayer()
+    {
+        playerCharacter = Instantiate(playerCharacter, respawnPlayerPos.position, respawnPlayerPos.rotation);
+    }
+
+    public void KillPlayer(PlayerMovement player)
+    {
+        if (lifes <= 0)
+        {
+            Destroy(player.gameObject);
+        }
+        else
+        {
+            lifes--;
+            FreezePlayer(false);
+            Instance.RespawnPlayer();
+            Destroy(player.gameObject);
+        }
+    }
+
+
+    private void FreezePlayer(bool freeze)
+    {
+        playerCharacter.GetComponent<PlayerMovement>().FreezeRB(freeze);
+    }
+
+    public void preparePlayerLevel(int nLevel)
+    {
+        int tempActualLevel = PlayerPrefs.GetInt("actualLevel");
+        if(tempActualLevel != nLevel)
+        {
+            lifes = 4;
+            points = 0;
+            PlayerPrefs.SetFloat("healthbar", 100);
+        }
+    }
+
+    public void StartGameOver()
+    {
+        Debug.Log("Is Game Over Man!!");
+        CanPause(false);
+        gameOver = true;
+        gameOverUI.SetActive(true);
+    }
+
+    private void CanPause(bool pause)
+    {
+        canPauseGame = pause;
+        FindObjectOfType<PauseMenu>().AllowPause(pause);
+    }
+
 }

@@ -6,7 +6,7 @@ public class Bullet : MonoBehaviour
 {
     public float destroyTime = 4f;
 
-    public int damage = 10;
+    public float damage = 10;
     public bool left;
 
     public float speed = 24f;
@@ -21,14 +21,21 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (left)
+        destroyTime -= Time.deltaTime;
+        if (destroyTime <= 0)
+        {
+            Destroy(gameObject);
+        }
+
+        /*if (left)
         {
             transform.Translate(Vector2.left * speed * Time.deltaTime);
         }
         else
         {
             transform.Translate(Vector2.right * speed * Time.deltaTime);
-        }
+        }*/
+        transform.Translate(Vector3.right * transform.localScale.x * speed * Time.deltaTime);
     }
 
     public void Shoot()
@@ -46,6 +53,17 @@ public class Bullet : MonoBehaviour
         {
 
         }
+
+        if (collision.gameObject.CompareTag("Box"))
+        {
+            BoxSupply supply = collision.GetComponentInParent<BoxSupply>();
+            if(supply != null)
+            {
+                Debug.Log("This is supplyween: "+ supply);
+                supply.loseHealthAtHit(damage);
+            }
+        }
+
         Destroy(gameObject);
     }
 }

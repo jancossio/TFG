@@ -10,8 +10,10 @@ public class LifeCount : MonoBehaviour
 
     private void Start()
     {
-        remainingLives = PlayerPrefs.GetInt("lifes");
-        for(int i=0; i< remainingLives; i++)
+        //remainingLives = PlayerPrefs.GetInt("lifes");
+        remainingLives = 4;
+        //PlayerPrefs.SetInt("lifes", remainingLives);
+        for (int i=0; i< remainingLives; i++)
         {
             playerLives[i].enabled = true;
         }
@@ -19,31 +21,45 @@ public class LifeCount : MonoBehaviour
 
     public void LoseLife()
     {
-        remainingLives = PlayerPrefs.GetInt("lifes");
-        //Debug.Log("LifeCount:LoseLife Hay " + remainingLives + " vidas");
+        //remainingLives = PlayerPrefs.GetInt("lifes");
+
         //If there aren't any remaining lives, is declared Game Over for the player
-        if(remainingLives <= 0)
+        if(remainingLives <= 1)
         {
-            //FindObjectOfType<PlayerController>().Die();
-            FindObjectOfType<LevelManager>().Restart();
+            //FindObjectOfType<LevelManager>().Restart();
+            remainingLives--;
+            GameManager.Instance.StartGameOver();
         }
-
-        //Decreases the quantity of remainigLives by one
-        remainingLives--;
-        PlayerPrefs.SetInt("lifes", remainingLives);
+        else
+        {
+            //Decreases the quantity of remainigLives by one
+            remainingLives--;
+            playerLives[remainingLives].enabled = false;
+            FindObjectOfType<HealthBar>().RefillBar();
+        }
+        //PlayerPrefs.SetInt("lifes", remainingLives);
         //And, the last live on the vector is hidden
-        //FindObjectOfType<LevelManager>().Restart();
-        playerLives[remainingLives].enabled = false;
-        FindObjectOfType<HealthBar>().RefillBar();
+        Debug.Log("Vidas: "+remainingLives);
 
+    }
+
+    public void RecoverLife()
+    {
+        remainingLives++;
+        playerLives[remainingLives-1].enabled = true;
+    }
+
+    public bool checkMissingLifes()
+    {
+        return (remainingLives < 4);
     }
 
     private void Update()
     {
-       /* if (Input.GetKeyDown(KeyCode.U))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             Debug.Log("GAME");
             LoseLife();
-        }*/
+        }
     }
 }

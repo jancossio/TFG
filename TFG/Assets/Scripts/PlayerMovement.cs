@@ -10,7 +10,6 @@ public class PlayerMovement : MonoBehaviour
     float verticalValue;
 
     public float speed = 2f;
-    public float runSpeed = 4f;
 
     public float jumpPower;
     public float secondJump;
@@ -25,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     bool facingRight = true;
     public bool isGrounded;
 
+    public float fallMultiplier = 0.5f;
     bool coyoteJump;
     bool multipleJump;
 
@@ -33,14 +33,18 @@ public class PlayerMovement : MonoBehaviour
 
     public bool isRunning = false;
 
-    float runSpeedModifier = 1.5f;
+    float runSpeedModifier = 1.25f;
     float crouchSpeedModifier = 0.5f;
 
     public bool crouchPressed = false;
 
+    public bool gradualJump = true;
+
     private float wallSlideSpeed = 2f;
     public bool isWallSliding;
-    public float fallMultiplier = 0.5f;
+    private bool isWallJumping = false;
+    private float wallJumpDirection;
+    private Vector2 wallJumpPower = new Vector2(7f, 14f);
 
     bool isClimbing = false;
     public LayerMask ladderLayer;
@@ -53,8 +57,12 @@ public class PlayerMovement : MonoBehaviour
     public float shotCadence;
     float shootTime;
     bool shotFlag = false;
+
+    public bool canShoot = true;
     [SerializeField] GameObject bullet;
-    //public bool traspassPlatform = false;
+
+    public bool freezePlayer = false;
+    RigidbodyConstraints2D tempConstr;
 
     // Start is called before the first frame update
     void Start()
@@ -69,7 +77,8 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        horizontalValue = Input.GetAxisRaw("Horizontal");
+
+        horizontalValue = Input.GetAxis("Horizontal");
 
         anim.SetFloat("yVelocity", rb.velocity.y);
 
@@ -87,6 +96,11 @@ public class PlayerMovement : MonoBehaviour
             Jump();
         }
 
+       /* if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+        }*/
+
         if (Input.GetKeyDown(KeyCode.LeftShift))
             isRunning = true;
         if (Input.GetKeyUp(KeyCode.LeftShift))
@@ -94,10 +108,8 @@ public class PlayerMovement : MonoBehaviour
 
         WallSlide();
 
-        if (Input.GetKeyDown(KeyCode.R))
-            shotFlag = true;
-        if (Input.GetKeyUp(KeyCode.R))
-            shotFlag = false;
+        if (Input.GetMouseButtonDown(0))
+            Shoot();
     }
 
     void FixedUpdate()
@@ -110,8 +122,11 @@ public class PlayerMovement : MonoBehaviour
         {
             checkingGround();
             Climb();
-            playerShoot();
-            Move(horizontalValue, crouchPressed);
+            //playerShoot();
+            if (!isWallJumping)
+            {
+                Move(horizontalValue, crouchPressed);
+            }
         }
     }
 
@@ -180,28 +195,22 @@ public class PlayerMovement : MonoBehaviour
         if (GroundCheck.isGrounded && canJump)
         {
             multipleJump = true;
-            availableJumps--;
-
             rb.velocity = Vector2.up * jumpPower;
             anim.SetBool("Jump", true);
 
-            Debug.Log(" health now: " + 80 / 100);
         }
         else
         {
-            if (multipleJump && availableJumps > 0)
+            if (multipleJump)
             {
-                availableJumps--;
-
                 rb.velocity = Vector2.up * secondJump;
-                Debug.Log(Vector2.up * jumpPower);
+                multipleJump = false;
                 anim.SetBool("Jump", true);
             }
 
             if (coyoteJump)
             {
                 multipleJump = true;
-                availableJumps--;
 
                 rb.velocity = Vector2.up * jumpPower;
                 anim.SetBool("Jump", true);
@@ -215,19 +224,30 @@ public class PlayerMovement : MonoBehaviour
         {
             if (!isWallSliding)
             {
-                availableJumps = totalJumps;
+                //availableJumps = totalJumps;
                 multipleJump = false;
             }
             isWallSliding = true;
+            wallJumpDirection = -transform.localScale.x;
+
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlideSpeed, float.MaxValue));
 
             if (Input.GetButtonDown("Jump"))
             {
-                availableJumps--;
-                canJump = false;
-
-                rb.velocity = Vector2.up * jumpPower;
+                //availableJumps--;
+                isWallJumping = true;
+                //canJump = false;
+                rb.velocity = new Vector2(wallJumpDirection*wallJumpPower.x, wallJumpPower.y);
                 anim.SetBool("Jump", true);
+                if (transform.localScale.x != wallJumpDirection)
+                {
+                    Vector3 tempScale = transform.localScale;
+                    tempScale.x *= -1f;
+                    facingRight = !facingRight;
+                    transform.localScale = tempScale;
+                }
+
+                StartCoroutine(WallJumpDelay());
             }
         }
         else
@@ -247,7 +267,7 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = true;
             canJump = true;
             if (!wasGrounded){
-                availableJumps = totalJumps;
+                //availableJumps = totalJumps;
                 multipleJump = false;
             }
         }
@@ -265,8 +285,14 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator CoyoteJumpDelay()
     {
     coyoteJump = true;
-    yield return new WaitForSeconds(0.2f);
+    yield return new WaitForSeconds(0.25f);
     coyoteJump = false;
+    }
+
+    IEnumerator WallJumpDelay()
+    {
+        yield return new WaitForSeconds(0.5f);
+        isWallJumping = false;
     }
 
     void Climb()
@@ -308,40 +334,35 @@ public class PlayerMovement : MonoBehaviour
         return Physics2D.OverlapCircle(transform.position, 0.2f, ladderLayer);
     }
 
-    void playerShoot(){
-        if (shotFlag)
+    void Shoot()
+    {
+        if (canShoot)
         {
-
-            shootTime += Time.deltaTime;
-
-            if (shootTime >= shotCadence)
+            int tempCheck = FindObjectOfType<ItemManager>().checkNumPines();
+            if (tempCheck > 0)
             {
+                FindObjectOfType<ItemManager>().shootPines();
                 GameObject obj = Instantiate(bullet, throwPoint) as GameObject;
                 obj.transform.parent = null;
                 shootTime = 0;
+                canShoot = false;
+                StartCoroutine(shotDelay());
             }
-        }
-        else
-        {
-            shootTime = shotCadence;
         }
     }
 
-    public void TakeDamage(int damage)
+    IEnumerator shotDelay()
+    {
+        yield return new WaitForSeconds(shotCadence);
+        canShoot = true;
+    }
+
+    public void TakeDamage(float damage)
     {
         if (!isInvincible)
         {
-            //currentHealth -= damage;
             FindObjectOfType<HealthBar>().LoseHealth(damage);
             StartDamageAnimation();
-            /*if (currentHealth <= 0)
-            {
-                //Kill player
-            }
-            else
-            {
-                StartDamageAnimation();
-            }*/
         }
     }
 
@@ -351,7 +372,7 @@ public class PlayerMovement : MonoBehaviour
         {
             isTakingDamage = true;
             isInvincible = true;
-            float hitForceX = 2f * -transform.localScale.x;
+            float hitForceX = 6f * -transform.localScale.x;
             float hitForceY = 17f;
             rb.velocity = Vector2.zero;
             rb.AddForce(new Vector2 (hitForceX, hitForceY), ForceMode2D.Impulse);
@@ -383,14 +404,35 @@ public class PlayerMovement : MonoBehaviour
         }
         isInvincible = false;
     }
-    /* IEnumerator HurtDelay()
+
+    public void Kill()
+    {
+        FreezeRB(true);
+        StartCoroutine(KillDelay());
+    }
+
+     public IEnumerator KillDelay()
      {
-         rb.drag = 2;
-         yield return new WaitForSeconds(0.5f);
-         hitParticle.SetActive(false);
-         yield return new WaitForSeconds(0.8f);
-         StopDamageAnimation();
-     }*/
+        anim.Play("Fox_hurt");
+        yield return new WaitForSeconds(1.3f);
+        //FreezePlayer(false);
+        GameManager.Instance.KillPlayer(this);
+     }
+
+    public void FreezeRB(bool freeze)
+    {
+        if (freeze)
+        {
+            freezePlayer = true;
+            tempConstr = rb.constraints;
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        }
+        else
+        {
+            freezePlayer = true;
+            rb.constraints = tempConstr;
+        }
+    }
 
     private void OnDrawGizmosSelected()
     {

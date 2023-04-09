@@ -10,14 +10,16 @@ public class ItemManager : MonoBehaviour
 
     private int cherriesTaken = 0;
     private int diamondsTaken = 0;
+    private int numConePines = 0;
 
     bool cherriesDone = false, diamondsDone = false, allDone = false;
 
     public Text cherriesCollected;
     public Text diamondsCollected;
+    public Text pinesAmmo;
     private int totalCherriesInLevel;
 
-    public enum itemType : int { Cherry=0, Diamond=1 };
+    public enum itemType : int { Cherry=0, Diamond=1, bandAid=2, aidKit=3, life=4 };
 
     itemType actualItem;
 
@@ -31,6 +33,7 @@ public class ItemManager : MonoBehaviour
         itemCheck();
         cherriesCollected.text = cherriesTaken.ToString();
         diamondsCollected.text = diamondsTaken.ToString();
+        pinesAmmo.text = numConePines.ToString();
     }
 
     public void itemCheck()
@@ -54,8 +57,6 @@ public class ItemManager : MonoBehaviour
         }
     }
 
-    
-
     public void itemObtained(int type)
     {
         switch(type)
@@ -68,6 +69,37 @@ public class ItemManager : MonoBehaviour
                 numDiamonds--;
                 diamondsTaken++;
                 break;
+            case 2:
+                FindObjectOfType<LifeCount>().RecoverLife();
+                break;
+            case 3:
+                FindObjectOfType<HealthBar>().Heal(15f);
+                break;
+            case 4:
+                FindObjectOfType<HealthBar>().Heal(50f);
+                break;
+            case 5:
+                numConePines++;
+                break;
+            case 6:
+                numConePines += 5;
+                numConePines = Mathf.Clamp(numConePines, 0, 15);
+                break;
+            case 7:
+                numConePines += 15;
+                numConePines = Mathf.Clamp(numConePines, 0, 15);
+                break;
         }
+    }
+
+    public int checkNumPines()
+    {
+        return numConePines;
+        Debug.Log("Número de piñas insuficiente???");
+    }
+
+    public void shootPines()
+    {
+            numConePines--;
     }
 }

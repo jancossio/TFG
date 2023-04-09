@@ -4,6 +4,9 @@ public class CameraFollow : MonoBehaviour
 {
     public Transform target;
     public Vector3 minValues, maxValues;
+
+    float nextTimeToSearch = 0f;
+
     [Range(1, 10)] public float smoothFactor;
     Vector3 offset = new Vector3(0, 0, -10);
 
@@ -12,6 +15,11 @@ public class CameraFollow : MonoBehaviour
         if (target != null)
         {
            Follow();
+        }
+        else
+        {
+            SearchForPlayer();
+            return;
         }
     }
 
@@ -28,5 +36,14 @@ public class CameraFollow : MonoBehaviour
 
         Vector3 smoothPosition = Vector3.Lerp(transform.position, boundPosition, smoothFactor*Time.fixedDeltaTime);
         transform.position = smoothPosition;
+    }
+
+    void SearchForPlayer()
+    {
+        GameObject result = GameObject.FindGameObjectWithTag("Player");
+        if (result != null)
+        {
+            target = result.transform;
+        }
     }
 }

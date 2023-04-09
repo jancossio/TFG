@@ -11,6 +11,7 @@ public class IAPrimary : MonoBehaviour
 
     public float startTimer = 2f;
     private float Timer;
+    private bool facingRight = false;
 
     private int point = 0;
     private Vector2 pos;
@@ -55,17 +56,20 @@ public class IAPrimary : MonoBehaviour
     IEnumerator CheckDirection()
     {
         pos = transform.position;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
 
         if(transform.position.x > pos.x)
         {
-            spriteRend.flipX = true;
+            //spriteRend.flipX = true;
             anim.SetBool("Idle", false);
+            transform.localScale = new Vector3(-1, 1, 1);
+
         }
-        else if(transform.position.x < pos.x)
-        {
-            spriteRend.flipX = false;
+        else if(transform.position.x < pos.x){
+            //spriteRend.flipX = false;
             anim.SetBool("Idle", false);
+            transform.localScale = new Vector3(1, 1, 1);
+
         }
         else if(transform.position.x == pos.x)
         {
