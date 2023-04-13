@@ -28,6 +28,7 @@ public class LifeCount : MonoBehaviour
         {
             //FindObjectOfType<LevelManager>().Restart();
             remainingLives--;
+            playerLives[remainingLives].enabled = false;
             GameManager.Instance.StartGameOver();
         }
         else

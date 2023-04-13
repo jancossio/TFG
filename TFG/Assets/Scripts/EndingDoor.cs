@@ -10,6 +10,15 @@ public class EndingDoor : MonoBehaviour
     public string levelName;
     private bool inDoor = false;
 
+    int numUnlockedLevels;
+    public int levelToUnlock;
+
+    private void Start()
+    {
+        numUnlockedLevels = PlayerPrefs.GetInt("levelsUnlocked");
+        levelToUnlock = SceneManager.GetActiveScene().buildIndex + 1;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -17,6 +26,10 @@ public class EndingDoor : MonoBehaviour
             //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             text.gameObject.SetActive(true);
             inDoor = true;
+            if (numUnlockedLevels <= levelToUnlock)
+            {
+                PlayerPrefs.SetInt("levelsUnlocked", numUnlockedLevels + 1);
+            }
         }
     }
 
@@ -32,5 +45,11 @@ public class EndingDoor : MonoBehaviour
         {
             SceneManager.LoadScene(levelName);
         }
+    }
+
+    public void SetParameters(Text UIText, string doorNextLevel)
+    {
+        text = UIText;
+        levelName = doorNextLevel;
     }
 }

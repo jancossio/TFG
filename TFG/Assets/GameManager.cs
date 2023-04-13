@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     private bool canPauseGame = true;
     [SerializeField]
     private GameObject gameOverUI;
+    [SerializeField]
+    private GameObject WinScreenUI;
 
     private void Awake()
     {
@@ -74,14 +76,15 @@ public class GameManager : MonoBehaviour
     }
 
 
-    private void RespawnPlayer()
+    public void RespawnPlayer()
     {
         playerCharacter = Instantiate(playerCharacter, respawnPlayerPos.position, respawnPlayerPos.rotation);
+        Debug.Log("Player Respawned in: " + respawnPlayerPos.position);
     }
 
     public void KillPlayer(PlayerMovement player)
     {
-        if (lifes <= 0)
+        if (lifes <= 1)
         {
             Destroy(player.gameObject);
         }
@@ -119,10 +122,26 @@ public class GameManager : MonoBehaviour
         gameOverUI.SetActive(true);
     }
 
+    public void StartScreenWin()
+    {
+        Debug.Log("You win Man!!");
+        CanPause(false);
+        gameOver = true;
+        WinScreenUI.SetActive(true);
+    }
+
     private void CanPause(bool pause)
     {
         canPauseGame = pause;
         FindObjectOfType<PauseMenu>().AllowPause(pause);
+    }
+
+    public void SetRespawnPosition(Transform newRespawn)
+    {
+        
+        respawnPlayerPos = newRespawn;
+        PlayerPrefs.SetFloat("checkpointPositionX", respawnPlayerPos.position.x);
+        PlayerPrefs.SetFloat("checkpointPositionY", respawnPlayerPos.position.y);
     }
 
 }

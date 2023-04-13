@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4349425580063208809
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4349425580063208808}
+  - component: {fileID: 4349425580063208811}
+  m_Layer: 0
+  m_Name: MazeNode
+  m_TagString: Untagged
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &4349425580063208808
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4349425580063208809}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4349425580063208811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4349425580063208809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e59ba67793e6a2347ab8d0bc7516d507, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionMap: {fileID: 0}
+  rock: {fileID: 11400000, guid: 6578e54f1d65f284c889789cb093d2db, type: 2}
+  tunnelMap: {fileID: 0}
+  air: {fileID: 11400000, guid: 4ada69c7fa7fa1249804bbfa615fa190, type: 2}
+  ladderMap: {fileID: 0}
+  ladderTile: {fileID: 11400000, guid: 481a3dc640efe3945a7db4a10ad96779, type: 2}
+  spikes: {fileID: 5688924259843886722, guid: 9bf64cd7c2747364dbf01a9bc809903f, type: 3}
+  platform: {fileID: 7612995563280723545, guid: 7bd1365a66c01a748b8ff0e7d586817c, type: 3}
+  diamond: {fileID: 7430986141184244911, guid: 5e41c9b771c955a438b17efcb6ff4cf6, type: 3}
+  coin: {fileID: 4645400168048846081, guid: fe5bf1e79da0f1a489ae9300008364e0, type: 3}
+  neighbourNodes:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  upWall: 1
+  downWall: 1
+  leftWall: 1
+  rightWall: 1
+  currentState: 0

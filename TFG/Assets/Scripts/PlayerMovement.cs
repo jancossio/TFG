@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -63,6 +64,8 @@ public class PlayerMovement : MonoBehaviour
 
     public bool freezePlayer = false;
     RigidbodyConstraints2D tempConstr;
+
+    public AudioSource foxSource;
 
     // Start is called before the first frame update
     void Start()
@@ -377,6 +380,7 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = Vector2.zero;
             rb.AddForce(new Vector2 (hitForceX, hitForceY), ForceMode2D.Impulse);
             //StartCoroutine(HurtDelay());
+            foxSource.Play();
             hitParticle.SetActive(true);
             rb.drag = 2;
             Invoke("StopDamageAnimation", 1f);
