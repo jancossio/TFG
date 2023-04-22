@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4444588178022184413}
   - component: {fileID: 4444588178022184403}
   - component: {fileID: 4444588178022184414}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: BandAidHealth
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 4444588178596646616}
   - component: {fileID: 4444588178596646622}
   - component: {fileID: 4444588178596646623}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: collected
   m_TagString: Untagged
   m_Icon: {fileID: 0}

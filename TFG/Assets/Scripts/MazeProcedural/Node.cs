@@ -12,7 +12,9 @@ public class Node : MonoBehaviour
     public Tilemap ladderMap;
     public Tile ladderTile;
     public GameObject spikes;
-    public GameObject platform;
+    public GameObject threePlatform;
+    public GameObject sixPlatform;
+    public GameObject ninePlatform;
     public GameObject diamond;
     public GameObject coin;
 
@@ -228,8 +230,10 @@ public class Node : MonoBehaviour
             char valAir = 'a';
             char valRock = 'r';
             char valLadder = 'l';
-            char valPlatform = 'p';
-            char valLadPlatf = 'b';
+            char valThreePlatform = 't';
+            char valSixPlatform = 'k';
+            char valNinePlatform = 'n';
+            //char valLadPlatf = 'b';
             char valCoin = 'c';
             char valDiamond = 'd';
             char valSpikes = 's';
@@ -251,19 +255,26 @@ public class Node : MonoBehaviour
                     Vector3Int tempVec = new Vector3Int((int)transform.localPosition.x + x, (int)transform.localPosition.y + y, 0);
                     ladderMap.SetTile(tempVec, ladderTile);
                 }
-                else if (c.CompareTo(valPlatform) == 0)
+                else if (c.CompareTo(valThreePlatform) == 0)
                 {
                     Vector3Int tempVec = new Vector3Int((int)transform.localPosition.x + x, (int)transform.localPosition.y + y, 0);
                     tunnelMap.SetTile(tempVec, air);
                     Vector3 objVec = new Vector3(transform.localPosition.x +x+0.5f, transform.localPosition.y +y+0.5f, 0);
-                    Instantiate(platform, objVec, Quaternion.identity);
+                    Instantiate(threePlatform, objVec, Quaternion.identity);
                 }
-                else if (c.CompareTo(valLadPlatf) == 0)
+                else if (c.CompareTo(valSixPlatform) == 0)
                 {
                     Vector3Int tempVec = new Vector3Int((int)transform.localPosition.x + x, (int)transform.localPosition.y + y, 0);
-                    ladderMap.SetTile(tempVec, ladderTile);
+                    tunnelMap.SetTile(tempVec, air);
                     Vector3 objVec = new Vector3(transform.localPosition.x + x + 0.5f, transform.localPosition.y + y + 0.5f, 0);
-                    Instantiate(platform, objVec, Quaternion.identity);
+                    Instantiate(sixPlatform, objVec, Quaternion.identity);
+                }
+                else if (c.CompareTo(valNinePlatform) == 0)
+                {
+                    Vector3Int tempVec = new Vector3Int((int)transform.localPosition.x + x, (int)transform.localPosition.y + y, 0);
+                    tunnelMap.SetTile(tempVec, air);
+                    Vector3 objVec = new Vector3(transform.localPosition.x + x + 0.5f, transform.localPosition.y + y + 0.5f, 0);
+                    Instantiate(ninePlatform, objVec, Quaternion.identity);
                 }
                 else if (c.CompareTo(valCoin) == 0)
                 {

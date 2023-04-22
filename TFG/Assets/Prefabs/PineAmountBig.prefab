@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8515361057843870617}
   - component: {fileID: 8515361057843870615}
   - component: {fileID: 8515361057843870614}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: collected
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,8 +114,8 @@ GameObject:
   - component: {fileID: 8515361059352440909}
   - component: {fileID: 8515361059352440908}
   - component: {fileID: 8515361059352440907}
-  m_Layer: 0
-  m_Name: BigPineAmount
+  m_Layer: 15
+  m_Name: PineAmountBig
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

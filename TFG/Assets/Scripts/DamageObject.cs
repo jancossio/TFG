@@ -16,6 +16,9 @@ public class DamageObject : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        FindObjectOfType<PlayerMovement>().TakeDamage(damageDealt);
+        if (collision.transform.CompareTag("Player"))
+        {
+            FindObjectOfType<PlayerMovement>().TakeDamage(damageDealt);
+        }
     }
 }

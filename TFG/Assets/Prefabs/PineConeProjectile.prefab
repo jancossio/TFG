@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7444079859114145033}
   - component: {fileID: 7444079859114145035}
   - component: {fileID: 7444079859114145030}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: PineConeProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 7444079860711618819}
   - component: {fileID: 7444079860711618821}
   - component: {fileID: 7444079860711618818}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: collected
   m_TagString: Untagged
   m_Icon: {fileID: 0}

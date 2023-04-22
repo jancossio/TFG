@@ -6,17 +6,22 @@ public class JumpDamage : MonoBehaviour
 {
     public Collider2D collid;
 
-    public Animator anim;
+    //public Animator anim;
 
-    public SpriteRenderer spriteRend;
+    //public SpriteRenderer spriteRend;
 
-    public GameObject destroyParticle;
+    //public GameObject destroyParticle;
 
     public float jumpForce = 8f;
 
-    public int health = 2;
+    //public int health = 2;
 
+    private Enemy enemy;
 
+    void Start()
+    {
+        enemy = GetComponentInParent<Enemy>();
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -25,29 +30,30 @@ public class JumpDamage : MonoBehaviour
             collision.gameObject.GetComponent<Rigidbody2D>().velocity = (Vector2.up * jumpForce);
             //Debug.Log("JumpDamage: " + collision.gameObject.GetComponent<Rigidbody2D>().velocity);
             getDamage();
-            checkHealth();
+            //checkHealth();
         }
     }
 
     public void getDamage()
     {
-        health--;
+        enemy.TakeDamage();
+        //health--;
         //hitAnimation
     }
 
-    public void checkHealth()
+    /*public void checkHealth()
     {
         if(health == 0)
         {
             destroyParticle.SetActive(true);
             spriteRend.enabled = false;
-            collid.isTrigger = true;
+            //collid.isTrigger = true;
             Invoke("deathDestruction", 0.4f);
         }
     }
 
     public void deathDestruction()
     {
-        Destroy(gameObject);
-    }
+        Destroy(transform.parent.gameObject);
+    }*/
 }

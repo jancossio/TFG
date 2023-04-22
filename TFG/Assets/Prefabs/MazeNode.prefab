@@ -50,7 +50,9 @@ MonoBehaviour:
   ladderMap: {fileID: 0}
   ladderTile: {fileID: 11400000, guid: 481a3dc640efe3945a7db4a10ad96779, type: 2}
   spikes: {fileID: 5688924259843886722, guid: 9bf64cd7c2747364dbf01a9bc809903f, type: 3}
-  platform: {fileID: 7612995563280723545, guid: 7bd1365a66c01a748b8ff0e7d586817c, type: 3}
+  threePlatform: {fileID: 684478236684163831, guid: 2d2527937267e284f999a95fb67b26cd, type: 3}
+  sixPlatform: {fileID: 1736209605626973966, guid: dca5151500726fa4789fa2464b00d096, type: 3}
+  ninePlatform: {fileID: 2951656350071753770, guid: 04845d950084ec9488e90fe77bc3f34a, type: 3}
   diamond: {fileID: 7430986141184244911, guid: 5e41c9b771c955a438b17efcb6ff4cf6, type: 3}
   coin: {fileID: 4645400168048846081, guid: fe5bf1e79da0f1a489ae9300008364e0, type: 3}
   neighbourNodes:

@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 5607106906946076816}
   - component: {fileID: 5607106906946076830}
   - component: {fileID: 5607106906946076831}
-  m_Layer: 0
-  m_Name: SmallPineAmount
+  m_Layer: 15
+  m_Name: PineAmountSmall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 5607106907112011275}
   - component: {fileID: 5607106907112011277}
   - component: {fileID: 5607106907112011276}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: collected
   m_TagString: Untagged
   m_Icon: {fileID: 0}
