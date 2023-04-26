@@ -236,7 +236,7 @@ MonoBehaviour:
   spriteRend: {fileID: 5470473920304316815}
   collid: {fileID: 5470473920304316814}
   boxCollider: {fileID: 5470473918773720427}
-  health: 30
+  health: 3
   jumpPower: 10
   item: {fileID: 3227723644899993280}
 --- !u!1001 &5470473920413407855

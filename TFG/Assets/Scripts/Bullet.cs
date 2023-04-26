@@ -4,17 +4,15 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float destroyTime = 2.5f;
-
-    public float damage = 10;
-    public bool left;
-
-    public float speed = 24f;
-    public float destroyTimer;
+    private protected Rigidbody2D rb;
+    [SerializeField] protected private float speed = 24f;
+    protected private float destroyTime = 2.5f;
+    //private float destroyTimer;
 
     // Start is called before the first frame update
     private void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         Destroy(gameObject, destroyTime);
     }
 
@@ -27,6 +25,8 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
         }
 
+        //transform.Translate(Vector3.right * transform.localScale.x * speed * Time.deltaTime);
+
         /*if (left)
         {
             transform.Translate(Vector2.left * speed * Time.deltaTime);
@@ -35,7 +35,6 @@ public class Bullet : MonoBehaviour
         {
             transform.Translate(Vector2.right * speed * Time.deltaTime);
         }*/
-        transform.Translate(Vector3.right * transform.localScale.x * speed * Time.deltaTime);
     }
 
     public void Shoot()
@@ -45,25 +44,5 @@ public class Bullet : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-
-        }
-
-        if (collision.gameObject.CompareTag("Box"))
-        {
-            BoxSupply supply = collision.GetComponentInParent<BoxSupply>();
-            if(supply != null)
-            {
-                Debug.Log("This is supplyween: "+ supply);
-                supply.loseHealthAtHit(damage);
-            }
-        }
-
-        Destroy(gameObject);
     }
 }

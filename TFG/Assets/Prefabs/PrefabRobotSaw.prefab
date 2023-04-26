@@ -146,11 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collid: {fileID: 8623251963319521865}
-  anim: {fileID: 8623251963319521864}
-  spriteRend: {fileID: 8623251963319521867}
-  destroyParticle: {fileID: 8623251965025807480}
   jumpForce: 8
-  health: 1
 --- !u!114 &8623251963319521869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -299,7 +295,7 @@ GameObject:
   - component: {fileID: 8623251964978753873}
   m_Layer: 0
   m_Name: PrefabRobotSaw
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

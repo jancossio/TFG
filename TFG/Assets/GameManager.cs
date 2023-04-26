@@ -16,10 +16,8 @@ public class GameManager : MonoBehaviour
     
     private bool gameOver = false;
     private bool canPauseGame = true;
-    [SerializeField]
-    private GameObject gameOverUI;
-    [SerializeField]
-    private GameObject WinScreenUI;
+    [SerializeField] private GameObject gameOverUI;
+    [SerializeField] private GameObject WinScreenUI;
 
     private void Awake()
     {
@@ -101,6 +99,12 @@ public class GameManager : MonoBehaviour
     private void FreezePlayer(bool freeze)
     {
         playerCharacter.GetComponent<PlayerMovement>().FreezeRB(freeze);
+
+        GameObject player = playerCharacter.gameObject;
+        if (player != null)
+        {
+            player.GetComponent<PlayerMovement>().FreezePlayer(freeze);
+        }
     }
 
     public void preparePlayerLevel(int nLevel)
@@ -126,7 +130,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("You win Man!!");
         CanPause(false);
-        gameOver = true;
+        FreezePlayer(true);
         WinScreenUI.SetActive(true);
     }
 
@@ -143,5 +147,8 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetFloat("checkpointPositionX", respawnPlayerPos.position.x);
         PlayerPrefs.SetFloat("checkpointPositionY", respawnPlayerPos.position.y);
     }
+    private void FreezeEnemies()
+    {
 
+    }
 }

@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class GoalUnlocker : MonoBehaviour
 {
     int numUnlockedLevels;
-    public int levelToUnlock;
+    [SerializeField] private int levelToUnlock;
 
     private void Start()
     {
@@ -20,8 +20,11 @@ public class GoalUnlocker : MonoBehaviour
         {
             if (numUnlockedLevels <= levelToUnlock)
             {
+                Debug.Log("Num Levels Unlock: "+numUnlockedLevels);
+                Debug.Log(" Level to Unlock: " + levelToUnlock);
                 PlayerPrefs.SetInt("levelsUnlocked", numUnlockedLevels+1);
             }
+            GameManager.Instance.StartScreenWin();
         }
     }
 }

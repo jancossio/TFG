@@ -27,13 +27,13 @@ public class BoxSupply : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.up * jumpPower;
-            loseHealthAtHit(10f);
+            loseHealthAtHit();
         }
     }
 
-    public void loseHealthAtHit(float damage)
+    public void loseHealthAtHit()
     {
-        health -= damage;
+        --health;
         //spriteRend.color = Color.black;
         anim.Play("boxHit");
         checkHealth();

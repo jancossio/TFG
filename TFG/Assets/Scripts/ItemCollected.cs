@@ -47,10 +47,10 @@ public class ItemCollected : MonoBehaviour
             else if (actualItem >= 5)
             {
                 int ammoCheck = FindObjectOfType<ItemManager>().checkNumPines();
-                Debug.Log("Deberia llegar aqui: " + ammoCheck);
+                //Debug.Log("Deberia llegar aqui: " + ammoCheck);
                 if (ammoCheck < 15)
                 {
-                    Debug.Log("Deberia llegar aqui: " + ammoCheck);
+                    //Debug.Log("Deberia llegar aqui: " + ammoCheck);
                     GetComponent<SpriteRenderer>().enabled = false;
                     gameObject.transform.GetChild(0).gameObject.SetActive(true);
 

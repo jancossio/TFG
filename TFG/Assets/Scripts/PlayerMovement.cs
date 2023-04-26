@@ -63,6 +63,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] GameObject bullet;
 
     public bool freezePlayer = false;
+    public bool freezeControls = false;
     RigidbodyConstraints2D tempConstr;
 
     public AudioSource foxSource;
@@ -422,6 +423,12 @@ public class PlayerMovement : MonoBehaviour
         //FreezePlayer(false);
         GameManager.Instance.KillPlayer(this);
      }
+
+    public void FreezePlayer(bool freezeIt)
+    {
+        FreezeRB(freezeIt);
+        freezeControls = freezeIt;
+    }
 
     public void FreezeRB(bool freeze)
     {
