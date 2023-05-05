@@ -41,6 +41,8 @@ GameObject:
   - component: {fileID: 7850603371725897652}
   - component: {fileID: 7850603371725897653}
   - component: {fileID: 7850603371725897654}
+  - component: {fileID: 8471275644883485617}
+  - component: {fileID: 2597547666619834743}
   - component: {fileID: 7850603371725897655}
   m_Layer: 0
   m_Name: Enemy
@@ -136,6 +138,43 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!70 &8471275644883485617
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7850603371725897658}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.030714422, y: 0.22071609}
+  m_Size: {x: 1.1287712, y: 0.74158186}
+  m_Direction: 1
+--- !u!50 &2597547666619834743
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7850603371725897658}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!114 &7850603371725897655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,12 +187,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51f27e08e33bf334ca23bea487501e15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collid: {fileID: 0}
   enemyName: BasicFlyingEnemy
   enemyHealth: 2
   destroyParticle: {fileID: 7850603373329253727}
+  canMove: 1
   target: {fileID: 0}
   rb: {fileID: 0}
   facingRight: 1
+  minChance: 10
+  pine: {fileID: 7444079859114145031, guid: 62f38feb183df1d4ea2d83f771f1427f, type: 3}
+  band: {fileID: 4444588178022184415, guid: aba5cda9780ca024aaf718c422a12360, type: 3}
+  first: {fileID: 6241586030349392230, guid: cdd2032a42bc3384194015b937221104, type: 3}
+  hearth: {fileID: 7768417735577073860, guid: b46c943e97fa7fe4caf408ff508bde1b, type: 3}
+  cherrie: {fileID: 4645400168048846081, guid: fe5bf1e79da0f1a489ae9300008364e0, type: 3}
   moveSpeed: 1.5
   patrolSpots:
   - {fileID: 7850603373364003915}
@@ -206,7 +253,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.032609224, y: 0.6257558}
+  m_Offset: {x: 0.032609224, y: 0.5794778}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -217,7 +264,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.0652184, y: 0.15777111}
+  m_Size: {x: 1.1853795, y: 0.15289974}
   m_EdgeRadius: 0
 --- !u!114 &7850603372602640930
 MonoBehaviour:
@@ -231,7 +278,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a9917baa5d1bcc4c9a160a8ff1a6b12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collid: {fileID: 0}
   jumpForce: 8
 --- !u!1 &7850603372824826534
 GameObject:
@@ -272,7 +318,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7850603372864549262}
-  - component: {fileID: 7850603372864549256}
+  - component: {fileID: 6483294667194920733}
   - component: {fileID: 7850603372864549257}
   m_Layer: 0
   m_Name: DealDamage
@@ -295,8 +341,8 @@ Transform:
   m_Father: {fileID: 7850603371725897652}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!70 &7850603372864549256
-CapsuleCollider2D:
+--- !u!61 &6483294667194920733
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -308,9 +354,19 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.030847784, y: -0.05552758}
-  m_Size: {x: 1.175217, y: 0.7443202}
-  m_Direction: 1
+  m_Offset: {x: 0.031285882, y: -0.06297541}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.1658742, y: 0.8219366}
+  m_EdgeRadius: 0
 --- !u!114 &7850603372864549257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -333,7 +389,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7850603373212101665}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: BasicFlyingEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}

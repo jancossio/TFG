@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class JumpDamage : MonoBehaviour
 {
-    public Collider2D collid;
+    //public Collider2D collid;
 
     //public Animator anim;
 

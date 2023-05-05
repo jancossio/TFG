@@ -302,7 +302,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 313962960}
         m_TargetAssemblyTypeName: GameOverManager, Assembly-CSharp
-        m_MethodName: Retry
+        m_MethodName: Levels
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7767,7 +7767,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  minValues: {x: -15, y: -2, z: -10}
+  minValues: {x: 13, y: 0, z: -10}
   maxValues: {x: 184, y: 22, z: -10}
   smoothFactor: 3
 --- !u!20 &519420031
@@ -7780,7 +7780,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.2784314, g: 0.95294124, b: 1, a: 0}
+  m_BackGroundColor: {r: 0.25490198, g: 0.14509805, b: 0.20392157, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -11723,6 +11723,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCharacter: {fileID: 4508056757199590315, guid: c3210839a69f6d146b21973586a52e5a, type: 3}
   respawnPlayerPos: {fileID: 0}
+  gameOver: 0
   gameOverUI: {fileID: 88305065}
   WinScreenUI: {fileID: 313962958}
 --- !u!4 &1710903793
@@ -11850,15 +11851,15 @@ MonoBehaviour:
   collisionMap: {fileID: 1353552072}
   tunnelMap: {fileID: 38184498}
   laddersMap: {fileID: 140018004}
+  Player: {fileID: 4508056757199590315, guid: c3210839a69f6d146b21973586a52e5a, type: 3}
   mazeNodeHeight: 4
   mazeNodeWidth: 4
   nodes: []
   startNode: {fileID: 0}
   exitNode: {fileID: 0}
   InstNode: {fileID: 4349425580063208809, guid: d9273e71abd78b5438580d3a95de01e8, type: 3}
-  ExitDoor: {fileID: 1049123482641428458, guid: fcf06fe9b9f5b084c84ed335b4c0b21f, type: 3}
+  ExitDoor: {fileID: 5268289996012787689, guid: b17fcca369f2baa4a95939973c7388a6, type: 3}
   StartPoint: {fileID: 5789750079188200875, guid: fe08d36f688879d4cbb2943aca41e6e4, type: 3}
-  DoorText: {fileID: 1350869914}
   NextLevel: Levels
 --- !u!4 &1934703799
 Transform:
@@ -11868,7 +11869,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1934703797}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Enemy
   - Box
+  - GameManager
+  - UI
   layers:
   - Default
   - TransparentFX
@@ -24,7 +26,7 @@ TagManager:
   - Checker
   - Object
   - Bullet
-  - 
+  - Barrier
   - 
   - 
   - 

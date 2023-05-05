@@ -11,6 +11,8 @@ public class LevelMenu : MonoBehaviour
     private void Start()
     {
         int levelsUnlocked = PlayerPrefs.GetInt("levelsUnlocked", 1);
+        Debug.Log("Num Levels Unlock: " + levelsUnlocked);
+        Debug.Log(" Level to Unlock: " + levelsButtons.Length);
         for (int i=0; i< levelsButtons.Length; i++)
         {
             //Debug.Log(levelsUnlocked);

@@ -22,7 +22,7 @@ public class ItemCollected : MonoBehaviour
             }
             else if(actualItem == 2)
             {
-                bool tempCheck = FindObjectOfType<LifeCount>().checkMissingLifes();
+                bool tempCheck = FindObjectOfType<LifeCount>().CheckMissingLifes();
                 if (tempCheck)
                 {
                     GetComponent<SpriteRenderer>().enabled = false;

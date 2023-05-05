@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1091348409139490246}
   - component: {fileID: 1091348409139490245}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: colliderBox
   m_TagString: Box
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ GameObject:
   - component: {fileID: 1091348409379212833}
   - component: {fileID: 1091348409379212835}
   - component: {fileID: 1091348409379212844}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: crateRenderer
   m_TagString: Box
   m_Icon: {fileID: 0}
@@ -217,7 +217,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1091348410163293789}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: SmallBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}

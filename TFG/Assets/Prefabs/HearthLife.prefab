@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7768417735577073862}
   - component: {fileID: 7768417735577073880}
   - component: {fileID: 7768417735577073861}
-  m_Layer: 15
+  m_Layer: 9
   m_Name: HearthLife
   m_TagString: Untagged
   m_Icon: {fileID: 0}

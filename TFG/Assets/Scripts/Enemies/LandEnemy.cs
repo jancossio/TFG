@@ -26,13 +26,19 @@ public class LandEnemy : Enemy
     // Update is called once per frame
     void Update()
     {
-        if (Vector2.Distance(transform.position, target.position) < distanceChase)
+        if(target != null)
         {
-            Chase(target);
-        }
-        else
-        {
-            Patrol();
+            //Debug.Log("I know you exist");
+            if (Vector2.Distance(transform.position, target.position) < distanceChase)
+            {
+                Chase(target);
+                //Debug.Log("Im gonna find you");
+            }
+            else
+            {
+                Patrol();
+                //Debug.Log("Just patroling");
+            }
         }
     }
 
@@ -43,11 +49,11 @@ public class LandEnemy : Enemy
         {
             dir = -1f;
         }
+        CheckDirection(dir);
         float xVal = dir * moveSpeed * 100 * Time.fixedDeltaTime;
         Vector2 targetVelocity = new Vector2(xVal, rb.velocity.y);
         rb.velocity = targetVelocity;
         anim.SetBool("Idle", false);
-        CheckDirection(dir);
     }
 
     public void Patrol()

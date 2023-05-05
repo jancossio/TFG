@@ -75,7 +75,7 @@ public class FlyEnemy : Enemy
             adquiredTarget = Vector2.zero;
         }
 
-            float dir = target.position.x - transform.position.x;
+        float dir = target.position.x - transform.position.x;
         CheckDirection(dir);
     }
 }

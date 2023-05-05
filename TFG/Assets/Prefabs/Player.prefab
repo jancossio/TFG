@@ -143,7 +143,7 @@ GameObject:
   - component: {fileID: 4508056756513706626}
   - component: {fileID: 4508056756513706628}
   - component: {fileID: 4508056756513706629}
-  m_Layer: 14
+  m_Layer: 13
   m_Name: CrouchCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -328,7 +328,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4508056756784605810}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.469, y: -0.433, z: 0}
+  m_LocalPosition: {x: 0.469, y: 0.131, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4508056757199590315}
@@ -499,6 +499,7 @@ MonoBehaviour:
   canShoot: 1
   bullet: {fileID: 2563582582835842812, guid: af0d391a3fae8cb4c85e447132327b47, type: 3}
   freezePlayer: 0
+  canMove: 1
   foxSource: {fileID: 0}
 --- !u!50 &4508056757199590313
 Rigidbody2D:
@@ -579,7 +580,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4508056757199590295}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2dbbd7944730f1340b00ee0801921e73, type: 3}
   m_Name: 

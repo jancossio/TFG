@@ -21,10 +21,13 @@ public class Turret : Enemy
     // Update is called once per frame
     void Update()
     {
-        if (Vector2.Distance(transform.position, target.position) < distanceAttack)
+        if(target != null)
         {
-            AdquireTarget();
-            Attack();
+            if (Vector2.Distance(transform.position, target.position) < distanceAttack)
+            {
+                AdquireTarget();
+                Attack();
+            }
         }
     }
 

@@ -86,7 +86,7 @@ public class ItemManager : MonoBehaviour
                 numConePines = Mathf.Clamp(numConePines, 0, 15);
                 break;
             case 7:
-                numConePines += 15;
+                numConePines += 10;
                 numConePines = Mathf.Clamp(numConePines, 0, 15);
                 break;
         }

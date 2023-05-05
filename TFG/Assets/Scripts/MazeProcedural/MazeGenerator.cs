@@ -10,9 +10,12 @@ public class MazeGenerator : MonoBehaviour
     public Tilemap tunnelMap;
     public Tilemap laddersMap;
 
+    public Transform Player;
 
     public int mazeNodeHeight;
     public int mazeNodeWidth;
+    private float roomHeight = 10;
+    private float roomWidth = 16;
     public Node[] nodes;
     Node currentNode = null;
     Node nextNode = null;
@@ -32,13 +35,16 @@ public class MazeGenerator : MonoBehaviour
     [SerializeField] GameObject InstNode;
     public GameObject ExitDoor;
     public GameObject StartPoint;
-    public Text DoorText;
+    //public Text DoorText;
     public string NextLevel;
+
+    Vector3 minCamBounds = new Vector3(0, 0, 0);
+    Vector3 maxCamBounds = new Vector3(0, 0, 0);
 
     // Start is called before the first frame update
     void Start()
     {
-        nodes = new Node[mazeNodeHeight*mazeNodeWidth];
+        nodes = new Node[mazeNodeHeight * mazeNodeWidth];
 
         CreateNodes();
         StartNodes();
@@ -61,11 +67,11 @@ public class MazeGenerator : MonoBehaviour
                                "rraacaacalaaaarr",
                                "raarrrrrrlaaaaar",
                                "raaaaaaaalaaaaar",
-                               "aaaaacaaalacaaar",
+                               "aaaaacaaalpcaaar",
                                "aaaarrrrrrrraaar",
                                "aaaaaaaaaaaaaaar",
                                "aaaaaaaaaaaaaaar",
-                               "rcacracaacaraarr",
+                               "rcacracamcaraarr",
                                "rrrrraakaaarrrrr"};
 
         leftT = new string[]  {"rrrraaaaaaaarrrr",
@@ -76,12 +82,12 @@ public class MazeGenerator : MonoBehaviour
                                "raalaaaaaaaaaaaa",
                                "raalaaaaaaaaaaar",
                                "raalaaaaaaaaaarr",
-                               "rcalaracaracarrr",
+                               "rcalaracarmcarrr",
                                "rrrrrratarrrrrrr"};
 
         upT = new string[]   { "rrrrrrrrrrrrrrrr",
                                "rrrrraaaaaaarrrr",
-                               "raaaaaaalaaaaarr",
+                               "raaaacaalaacaarr",
                                "raaaaaaakaaaaaaa",
                                "aaaaaalalaaaaaaa",
                                "aaaaaalkaaaaaaaa",
@@ -95,7 +101,7 @@ public class MazeGenerator : MonoBehaviour
                                "raaalacaacaaaaar",
                                "raaalakaaaaaaaaa",
                                "raaalaaaaaaaaaaa",
-                               "aaaalacaacaaaaaa",
+                               "aaaalacaacapaaaa",
                                "aaaaaaaanaaalaaa",
                                "aaaaaaaaaaaalaaa",
                                "raaacaacaacalaar",
@@ -103,10 +109,10 @@ public class MazeGenerator : MonoBehaviour
 
         rightUpL = new string[]{"rrraaaaaaaaaarrr",
                                "rraaaaaaaaaaaaar",
-                               "raaaaaaaaacaacar",
+                               "raaaaaaaaacapcar",
                                "raaaaaaaarrrrrrr",
                                "aaaaaaaaaaaaaaar",
-                               "aaaacacacaaaaaar",
+                               "aaaacamacaaaaaar",
                                "aaarrrrrrraaaaar",
                                "aaaaaaaaaaaaaaar",
                                "raaaaaaaaasssssr",
@@ -116,28 +122,28 @@ public class MazeGenerator : MonoBehaviour
                                "rralacaaacaaaarr",
                                "raalrrrrrrraaaaa",
                                "raalaaaaaaaaaaaa",
-                               "raalaaaaaaaacaaa",
+                               "raalaaaaaaamcaaa",
                                "raalaaaaaaaataaa",
                                "rlalaaaaaaaaaaaa",
-                               "rlrrrraaaaaaaarr",
-                               "rlaaadraaaaaarrr",
+                               "rlrrrraaaaaaarra",
+                               "rlaaadraamaarrrr",
                                "rrrrrrrrrrrrrrrr"};
 
         rightDownL = new string[]{"rrrrrrrrrrrrrrrr",
                                   "raaaaaraaaaaaaar",
-                                  "raaaaaradaaalaar",
+                                  "raaaaaradacalaar",
                                   "raaaaarrrrrrlaar",
                                   "aaaaaaaaaaaalaar",
                                   "aaaaaaaaaaaalaar",
                                   "aaaaaaaaaaaalaar",
-                                  "aaaaacaacaaalaar",
+                                  "aaaaacaacaoalaar",
                                   "raaraaaaaararaar",
                                   "rrrraakaaarrrrrr"};
 
         leftDownL = new string[]{"rrrrrrrrrrrrrrrr",
                                  "raaaaaaaaaaaaarr",
                                  "raaaaaaaaaaaaarr",
-                                 "raalacaaacaaaaaa",
+                                 "raalacaoacaaaaaa",
                                  "raalrrrrrrraaaaa",
                                  "raalaaaaaaaaaaaa",
                                  "raalaaaaaaaaaaaa",
@@ -148,19 +154,19 @@ public class MazeGenerator : MonoBehaviour
         horzCorridor = new string[]{"rrrrrrrrrrrrrrrr",
                                     "aaaaaaaaaaaaaaaa",
                                     "aaaaaaaaaaaaaaaa",
-                                    "alaaaacacaaaaala",
+                                    "alaaaacpcaaaaala",
                                     "altaarrrrraaatla",
                                     "alaaaaaaaaaaaala",
                                     "alaaaacaacaaaala",
                                     "alaaaaaaaaaaaala",
-                                    "rlaaasaassaaaalr",
+                                    "rlaaasapasaaaalr",
                                     "rrrrrrrrrrrrrrrr"};
 
         vertCorridor = new string[]{"raaaaaaaaaaaaaar",
                                     "raaaaalcaaacaaar",
                                     "raaaaalakaaaaaar",
                                     "raaaaalaaaaaaaar",
-                                    "raaaaalaaaalaaar",
+                                    "raaaoalaaaalaaar",
                                     "raaaaaaanaalaaar",
                                     "raaaaaaaaaalaaar",
                                     "raaaaaaaaaalaarr",
@@ -175,7 +181,7 @@ public class MazeGenerator : MonoBehaviour
                                  "raaarrrrrrraaaar",
                                  "rraaaaaaaaaaaaar",
                                  "aaaaaaaaaaaaaaar",
-                                 "rrraaaaaaaaaaarr",
+                                 "rrraaaaamaaaaarr",
                                  "rrrrrrrrrrrrrrrr"};
 
         caveLeft = new string[]{"rrrrrrrrrrrrrrrr",
@@ -197,7 +203,7 @@ public class MazeGenerator : MonoBehaviour
                               "raaaarrrrrrraaar",
                               "raaaaaaaaaaaaaar",
                               "rraaaaaaaaaaaaar",
-                              "raaaaaaaaaaaaaar",
+                              "raaaaaaaaaamaaar",
                               "rrrraaaaaarrrrrr"};
 
         caveDown = new string[]{"raaaaaaaaaaaaaar",
@@ -208,20 +214,25 @@ public class MazeGenerator : MonoBehaviour
                                 "raaarrrrrrraaaar",
                                 "raaaaaaaaaaaaarr",
                                 "rraaaaaaaaaaaarr",
-                                "rrrraaaaaaaaarrr",
+                                "rrrraaaamaaaarrr",
                                 "rrrrrrrrrrrrrrrr"};
         #endregion
+
+        SetCameraBoundaries();
+        CreateMazeMap();
+        BuildMaze();
+        SetStartExit();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.N))
+        /*if (Input.GetKeyUp(KeyCode.N))
         {
             CreateMazeMap();
             BuildMaze();
             SetStartExit();
-        }
+        }*/
     }
 
     void CreateMazeMap()
@@ -417,7 +428,7 @@ public class MazeGenerator : MonoBehaviour
         //End
         Vector3 exitTemp = new Vector3((exitNode.transform.position.x + 8.5f), (exitNode.transform.position.y - 3f), 0);
         GameObject exit = Instantiate(ExitDoor, exitTemp, Quaternion.identity) as GameObject;
-        exit.GetComponent<EndingDoor>().SetParameters(DoorText, NextLevel);
+        //exit.GetComponent<EndingDoor>().SetParameters(DoorText, NextLevel);
 
         //Beggining
         Vector3 startTemp = new Vector3((startNode.transform.position.x + 8.5f), (startNode.transform.position.y - 3f), 0);
@@ -426,6 +437,28 @@ public class MazeGenerator : MonoBehaviour
         GameManager.Instance.SetRespawnPosition(startPos.transform);
         Debug.Log("Checkpoint is: "+startPos.transform.position);
         startPos.GetComponent<SpriteRenderer>().enabled = false;
+        startPos.GetComponent<Checkpoint>().SetBounds(minCamBounds, maxCamBounds);
+        GameManager.Instance.SetPlayer(Player);
         GameManager.Instance.RespawnPlayer();
+    }
+
+    private void SetCameraBoundaries()
+    {
+        float minX, minY, maxX, maxY;
+
+        float tempX = (float)mazeNodeWidth;
+        float tempY = (float)mazeNodeHeight;
+
+        minX = (-roomWidth/2) + 2;
+        minY = roomHeight/2;
+        maxX = (tempX - 0.5f) * roomWidth;
+        maxY = (tempY - 0.5f) * roomHeight;
+
+        minCamBounds = new Vector3(minX, minY, -10f);
+        maxCamBounds = new Vector3(maxX, maxY, -10f);
+
+        Debug.Log("eeee tu camara estupida");
+
+        GameObject.FindObjectOfType<CameraFollow>().SetNewCheckpointBounds(minCamBounds, maxCamBounds);
     }
 }

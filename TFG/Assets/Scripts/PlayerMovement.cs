@@ -63,10 +63,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] GameObject bullet;
 
     public bool freezePlayer = false;
-    public bool freezeControls = false;
+    public bool canMove = true;
     RigidbodyConstraints2D tempConstr;
 
-    public AudioSource foxSource;
+    //public AudioSource foxSource;
 
     // Start is called before the first frame update
     void Start()
@@ -81,8 +81,10 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        horizontalValue = Input.GetAxis("Horizontal");
+        if (canMove)
+        {
+            horizontalValue = Input.GetAxisRaw("Horizontal");
+        }
 
         anim.SetFloat("yVelocity", rb.velocity.y);
 
@@ -96,7 +98,8 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //If jump botton is pressed the jump action is enabled
-        if (Input.GetButtonDown("Jump") && !crouchPressed){
+        if (Input.GetButtonDown("Jump") && !crouchPressed)
+        {
             Jump();
         }
 
@@ -112,7 +115,7 @@ public class PlayerMovement : MonoBehaviour
 
         WallSlide();
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.T))
             Shoot();
     }
 
@@ -126,8 +129,7 @@ public class PlayerMovement : MonoBehaviour
         {
             checkingGround();
             Climb();
-            //playerShoot();
-            if (!isWallJumping)
+            if (!isWallSliding && !isWallJumping)
             {
                 Move(horizontalValue, crouchPressed);
             }
@@ -148,41 +150,36 @@ public class PlayerMovement : MonoBehaviour
         standingCollider.enabled = !crouchFlag;
         crouchingCollider.enabled = crouchFlag;
 
-       /* if (GroundCheck.isGrounded && crouchFlag && Input.GetKey(KeyCode.Space))
-        {
-            //Debug.Log("Down now");
-            //FindObjectOfType<Platform>().setEffectorDown();
-            traspassPlatform = true;
-        }
-        traspassPlatform = false; */
-
         #endregion
 
         #region Move&Run
         //Setting X value using dir & speed
+        /*if (canMove)
+        {*/
+            float xVal = dir * speed * 100 * Time.fixedDeltaTime;
+            if (isRunning)
+            {
+                xVal *= runSpeedModifier;
+            }
 
-        float xVal = dir * speed * 100 * Time.fixedDeltaTime;
-        if (isRunning){
-            xVal *= runSpeedModifier;
-        }
+            if (crouchFlag)
+            {
+                xVal *= crouchSpeedModifier;
+            }
 
-        if (crouchFlag){
-            xVal *= crouchSpeedModifier;
-        }
-
-        //Create new Vec2 for velocity
-        Vector2 targetVelocity = new Vector2(xVal, rb.velocity.y);
-        //Set player new Velocity
-        rb.velocity = targetVelocity;
+            //Create new Vec2 for velocity
+            Vector2 targetVelocity = new Vector2(xVal, rb.velocity.y);
+            //Set player new Velocity
+            rb.velocity = targetVelocity;
+       // }
 
         //Store current scale value
-        Vector3 currentScale = transform.localScale;
-        if (facingRight && dir < 0)
+        if (dir < 0)
         {
             transform.localScale = new Vector3(-1, 1, 1);
             facingRight = false;
         }
-        else if (!facingRight && dir > 0)
+        else if (dir > 0)
         {
             transform.localScale = new Vector3(1, 1, 1);
             facingRight = true;
@@ -238,10 +235,12 @@ public class PlayerMovement : MonoBehaviour
 
             if (Input.GetButtonDown("Jump"))
             {
-                //availableJumps--;
                 isWallJumping = true;
+                //canMove = false;
                 //canJump = false;
                 rb.velocity = new Vector2(wallJumpDirection*wallJumpPower.x, wallJumpPower.y);
+                //rb.AddForce(jumpForce, ForceMode2D.Impulse);
+                //rb.velocity = jumpForce;
                 anim.SetBool("Jump", true);
                 if (transform.localScale.x != wallJumpDirection)
                 {
@@ -265,11 +264,12 @@ public class PlayerMovement : MonoBehaviour
         bool wasGrounded = isGrounded;
         isGrounded = false;
 
-        //Checks if "GroundCheckCollider" is colliding with other objects in the Ground Layer
+        //Checks if "GroundCheckCollider" is colliding with some terrain
         if (GroundCheck.isGrounded)
         {
             isGrounded = true;
             canJump = true;
+            //canMove = true;
             if (!wasGrounded){
                 //availableJumps = totalJumps;
                 multipleJump = false;
@@ -295,7 +295,7 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator WallJumpDelay()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
         isWallJumping = false;
     }
 
@@ -381,7 +381,7 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = Vector2.zero;
             rb.AddForce(new Vector2 (hitForceX, hitForceY), ForceMode2D.Impulse);
             //StartCoroutine(HurtDelay());
-            foxSource.Play();
+            //foxSource.Play();
             hitParticle.SetActive(true);
             rb.drag = 2;
             Invoke("StopDamageAnimation", 1f);
@@ -420,15 +420,15 @@ public class PlayerMovement : MonoBehaviour
      {
         anim.Play("Fox_hurt");
         yield return new WaitForSeconds(1.3f);
-        //FreezePlayer(false);
+        FreezeRB(false);
         GameManager.Instance.KillPlayer(this);
      }
 
-    public void FreezePlayer(bool freezeIt)
+    /*public void FreezePlayer(bool freezeIt)
     {
         FreezeRB(freezeIt);
-        freezeControls = freezeIt;
-    }
+        canMove = freezeIt;
+    }*/
 
     public void FreezeRB(bool freeze)
     {

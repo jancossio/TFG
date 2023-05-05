@@ -46,4 +46,10 @@ public class CameraFollow : MonoBehaviour
             target = result.transform;
         }
     }
+
+    public void SetNewCheckpointBounds(Vector3 nMinBounds, Vector3 nMaxBounds)
+    {
+        minValues = nMinBounds;
+        maxValues = nMaxBounds;
+    }
 }

@@ -6,11 +6,12 @@ using UnityEngine.SceneManagement;
 public class GoalUnlocker : MonoBehaviour
 {
     int numUnlockedLevels;
-    [SerializeField] private int levelToUnlock;
+    public int levelToUnlock;
+    //[SerializeField] private string nextLevel;
 
     private void Start()
     {
-        numUnlockedLevels = PlayerPrefs.GetInt("levelsUnlocked");
+        numUnlockedLevels = PlayerPrefs.GetInt("levelsUnlocked", 1);
         levelToUnlock = SceneManager.GetActiveScene().buildIndex + 1;
     }
 
@@ -18,7 +19,7 @@ public class GoalUnlocker : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            if (numUnlockedLevels <= levelToUnlock)
+            if (numUnlockedLevels <= (levelToUnlock-2))
             {
                 Debug.Log("Num Levels Unlock: "+numUnlockedLevels);
                 Debug.Log(" Level to Unlock: " + levelToUnlock);
@@ -27,4 +28,9 @@ public class GoalUnlocker : MonoBehaviour
             GameManager.Instance.StartScreenWin();
         }
     }
+
+    /*public void SetParameters(int levelToAccess)
+    {
+        levelToUnlock = levelToAccess;
+    }*/
 }

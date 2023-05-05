@@ -1,0 +1,565 @@
+fileFormatVersion: 2
+guid: f557cb27ed2549242aebbb7701e00fc9
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5663136061291895218
+    second: mm10_strikeman_0
+  - first:
+      213: -3029556727012412508
+    second: mm10_strikeman_1
+  - first:
+      213: 6124149359447344775
+    second: mm10_strikeman_2
+  - first:
+      213: 5396216270570488954
+    second: mm10_strikeman_3
+  - first:
+      213: 4666344887686700427
+    second: mm10_strikeman_4
+  - first:
+      213: -8268451117136040682
+    second: mm10_strikeman_5
+  - first:
+      213: 5918644968427852504
+    second: mm10_strikeman_6
+  - first:
+      213: -5114747285597555805
+    second: mm10_strikeman_7
+  - first:
+      213: 7168500717333921198
+    second: mm10_strikeman_8
+  - first:
+      213: -6682126107537499977
+    second: mm10_strikeman_9
+  - first:
+      213: -505396962018691409
+    second: mm10_strikeman_10
+  - first:
+      213: -4602163183584311044
+    second: mm10_strikeman_11
+  - first:
+      213: -3610241762917974825
+    second: mm10_strikeman_12
+  - first:
+      213: -1525787488388656721
+    second: mm10_strikeman_13
+  - first:
+      213: 1424019275805134371
+    second: mm10_strikeman_14
+  - first:
+      213: 7512082543618785339
+    second: mm10_strikeman_15
+  - first:
+      213: 8587762375558715471
+    second: mm10_strikeman_16
+  - first:
+      213: -6830585307448900819
+    second: mm10_strikeman_17
+  - first:
+      213: -7005720496940500712
+    second: mm10_strikeman_18
+  - first:
+      213: -1184973616145906587
+    second: mm10_strikeman_19
+  - first:
+      213: -5093040687559996662
+    second: mm10_strikeman_20
+  - first:
+      213: -547743588358759011
+    second: mm10_strikeman_21
+  - first:
+      213: 7041239149367405989
+    second: mm10_strikeman_22
+  - first:
+      213: -7629100932225554475
+    second: mm10_strikeman_23
+  - first:
+      213: 2041860011073708619
+    second: mm10_strikeman_24
+  - first:
+      213: 2501575429777493006
+    second: mm10_strikeman_25
+  - first:
+      213: -615966050466925370
+    second: mm10_strikeman_26
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: mm10_strikeman_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 62
+        width: 32
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e46edffb1cf7861b0800000000000000
+      internalID: -5663136061291895218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mm10_strikeman_1
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 62
+        width: 32
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a3b783453ad4f5d0800000000000000
+      internalID: -3029556727012412508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mm10_strikeman_2
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 61
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7868b4135695df450800000000000000
+      internalID: 6124149359447344775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mm10_strikeman_3
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 62
+        width: 32
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7489829b1633ea40800000000000000
+      internalID: 5396216270570488954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mm10_strikeman_4
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 62
+        width: 26
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8d9606b3ff22c040800000000000000
+      internalID: 4666344887686700427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mm10_strikeman_5
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 62
+        width: 32
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61dac60648f804d80800000000000000
+      internalID: -8268451117136040682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mm10_strikeman_6
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 62
+        width: 24
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8d29bce8d30432250800000000000000
+      internalID: 5918644968427852504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mm10_strikeman_7
+      rect:
+        serializedVersion: 2
+        x: 235
+        y: 62
+        width: 24
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a3701e5174c409b0800000000000000
+      internalID: -5114747285597555805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mm10_strikeman_8
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 62
+        width: 40
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ead32dc0c61ab7360800000000000000
+      internalID: 7168500717333921198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mm10_strikeman_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 18
+        width: 32
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b81dd765b15443a0800000000000000
+      internalID: -6682126107537499977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mm10_strikeman_10
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 18
+        width: 36
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa6705804287cf8f0800000000000000
+      internalID: -505396962018691409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mm10_strikeman_11
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 18
+        width: 32
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf88314c7f4d120c0800000000000000
+      internalID: -4602163183584311044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mm10_strikeman_12
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 18
+        width: 47
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7dc7ef79e38d5edc0800000000000000
+      internalID: -3610241762917974825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mm10_strikeman_13
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 17
+        width: 28
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa1dbdffc5053dae0800000000000000
+      internalID: -1525787488388656721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mm10_strikeman_14
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 17
+        width: 28
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32e8caf8cf123c310800000000000000
+      internalID: 1424019275805134371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mm10_strikeman_15
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 17
+        width: 28
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b308fcfc547404860800000000000000
+      internalID: 7512082543618785339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mm10_strikeman_16
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 18
+        width: 18
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4854a2716cdd2770800000000000000
+      internalID: 8587762375558715471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mm10_strikeman_17
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 18
+        width: 12
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2381855ad2e431a0800000000000000
+      internalID: -6830585307448900819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

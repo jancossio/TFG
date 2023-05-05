@@ -12,8 +12,7 @@ public class HealthBar : MonoBehaviour
 
     private void Start()
     {
-        health = 100f;
-        PlayerPrefs.SetFloat("healthbar", 100);
+        health = PlayerPrefs.GetFloat("healthbar", 100);
         fillBar.fillAmount = health / 100;
     }
 

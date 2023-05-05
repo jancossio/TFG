@@ -44,16 +44,43 @@ public class PauseMenu : MonoBehaviour
         pausedGame = true;
     }
 
+    public void StopTime(bool stop)
+    {
+        if (stop)
+        {
+            Time.timeScale = 0f;
+            pausedGame = true;
+            AllowPause(false);
+        }
+        else
+        {
+            Time.timeScale = 1f;
+            pausedGame = false;
+            AllowPause(true);
+        }
+    }
+
+    public void Retry()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
     public void Levels()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Levels");
+    }
+
+    public void NextLevel()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void MainMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void Options()
@@ -63,6 +90,6 @@ public class PauseMenu : MonoBehaviour
 
     public void AllowPause(bool pause)
     {
-        pauseIsAllowed = false;
+        pauseIsAllowed = pause;
     }
 }

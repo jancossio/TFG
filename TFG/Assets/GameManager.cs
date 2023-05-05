@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
+    //public static GameManager gameManag;
     private static int lifes;
     private int actualLevel;
     private float health;
@@ -14,23 +15,36 @@ public class GameManager : MonoBehaviour
     public Transform respawnPlayerPos;
 
     
-    private bool gameOver = false;
+    public bool gameOver = false;
     private bool canPauseGame = true;
     [SerializeField] private GameObject gameOverUI;
     [SerializeField] private GameObject WinScreenUI;
 
     private void Awake()
     {
-        if (Instance == null)
+        /*if(Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
         {
             Instance = this;
-        } else
+            DontDestroyOnLoad(gameObject);
+        }*/
+
+        if (Instance == null)
+        {
+            //Instance = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+            Instance = this;
+        }
+        /*else if(Instance != this)
         {
             Debug.Log("Más de un GameManager en escena");
-        }
-    }
-    void Start()
-    {
+            Destroy(gameObject);
+        }*/
+
+        StartPlayer();
+
         lifes = 4;
         health = 100f;
         actualLevel = 0;
@@ -48,7 +62,7 @@ public class GameManager : MonoBehaviour
         return lifes;
     }
 
-    void incVida()
+    public void incVida()
     {
         lifes += 1;
     }
@@ -63,13 +77,14 @@ public class GameManager : MonoBehaviour
         return points;
     }
 
-    void reset()
+    public void ResetStats()
     {
         lifes = 4;
+        health = 100;
         PlayerPrefs.SetInt("lifes", lifes);
         //actualLevel = 0;
         //PlayerPrefs.SetInt("actualLevel", actualLevel);
-        PlayerPrefs.SetFloat("healthbar", 100);
+        PlayerPrefs.SetFloat("healthbar", health);
         points = 0;
     }
 
@@ -82,21 +97,23 @@ public class GameManager : MonoBehaviour
 
     public void KillPlayer(PlayerMovement player)
     {
-        if (lifes <= 1)
+        lifes = PlayerPrefs.GetInt("lifes", 0);
+        Debug.Log("Cuanta via me quea??: "+lifes);
+        if (lifes < 1)
         {
             Destroy(player.gameObject);
         }
         else
         {
             lifes--;
-            FreezePlayer(false);
+            //FreezePlayer(false);
             Instance.RespawnPlayer();
             Destroy(player.gameObject);
         }
     }
 
 
-    private void FreezePlayer(bool freeze)
+    /*private void FreezePlayer(bool freeze)
     {
         playerCharacter.GetComponent<PlayerMovement>().FreezeRB(freeze);
 
@@ -105,7 +122,7 @@ public class GameManager : MonoBehaviour
         {
             player.GetComponent<PlayerMovement>().FreezePlayer(freeze);
         }
-    }
+    }*/
 
     public void preparePlayerLevel(int nLevel)
     {
@@ -118,20 +135,22 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void StartGameOver()
-    {
-        Debug.Log("Is Game Over Man!!");
-        CanPause(false);
-        gameOver = true;
-        gameOverUI.SetActive(true);
-    }
-
     public void StartScreenWin()
     {
         Debug.Log("You win Man!!");
         CanPause(false);
-        FreezePlayer(true);
+        //FreezePlayer(true);
+        FindObjectOfType<PauseMenu>().StopTime(true);
         WinScreenUI.SetActive(true);
+    }
+
+    public void StartGameOverScreen()
+    {
+        gameOver = true;
+        CanPause(false);
+        //FreezePlayer(true);
+        //FindObjectOfType<PauseMenu>().StopTime(true);
+        gameOverUI.SetActive(true);
     }
 
     private void CanPause(bool pause)
@@ -147,8 +166,19 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetFloat("checkpointPositionX", respawnPlayerPos.position.x);
         PlayerPrefs.SetFloat("checkpointPositionY", respawnPlayerPos.position.y);
     }
-    private void FreezeEnemies()
-    {
 
+    public void StartPlayer()
+    {
+        playerCharacter = GameObject.FindGameObjectWithTag("Player").transform;
+
+        if(playerCharacter == null)
+        {
+            RespawnPlayer();
+        }
+    }
+
+    public void SetPlayer(Transform playerToSet)
+    {
+        playerCharacter = playerToSet;
     }
 }

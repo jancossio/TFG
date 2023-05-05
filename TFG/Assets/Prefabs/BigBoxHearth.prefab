@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4559581925792321749}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: BigBoxHearth
   m_TagString: Box
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 4559581926877191252}
   - component: {fileID: 4559581926877191253}
   - component: {fileID: 4559581926877191250}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: BoxJump
   m_TagString: Box
   m_Icon: {fileID: 0}
@@ -179,7 +179,7 @@ MonoBehaviour:
   spriteRend: {fileID: 4559581926877191255}
   collid: {fileID: 4559581926877191252}
   boxCollider: {fileID: 4559581927222238500}
-  health: 30
+  health: 3
   jumpPower: 10
   item: {fileID: 6091141993983695953}
 --- !u!1 &4559581927222238500
@@ -192,7 +192,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4559581927222238503}
   - component: {fileID: 4559581927222238502}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: ColliderBox
   m_TagString: Box
   m_Icon: {fileID: 0}

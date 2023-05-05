@@ -37,7 +37,7 @@ public class PlayerBullet : Bullet
                 supply.loseHealthAtHit();
             }
         }
-
+        //Debug.Log("I shot a dude: " + collision.gameObject.name);
         Destroy(gameObject);
     }
 }
