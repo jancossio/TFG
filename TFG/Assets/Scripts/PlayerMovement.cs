@@ -51,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask ladderLayer;
 
     bool isTakingDamage = false;
-    bool isInvincible = false;
+    public bool isInvincible = false;
     public GameObject hitParticle;
 
     public Transform throwPoint;
@@ -363,6 +363,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+
         if (!isInvincible)
         {
             FindObjectOfType<HealthBar>().LoseHealth(damage);
@@ -443,6 +444,11 @@ public class PlayerMovement : MonoBehaviour
             freezePlayer = true;
             rb.constraints = tempConstr;
         }
+    }
+
+    public void SetInvincibility(bool undamageable)
+    {
+        isInvincible = undamageable;
     }
 
     private void OnDrawGizmosSelected()

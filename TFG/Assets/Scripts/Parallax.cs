@@ -12,7 +12,7 @@ public class Parallax : MonoBehaviour
     void Start()
     {
         startPosX = transform.position.x;
-        startPosY = transform.position.y;
+        //startPosY = transform.position.y;
         spriteWidth = GetComponent<SpriteRenderer>().bounds.size.x;
         cam = Camera.main.transform;
     }
@@ -22,9 +22,9 @@ public class Parallax : MonoBehaviour
     {
         float controlDistance = cam.transform.position.x * (1 - parallaxSpeed);
         float distanceMoveX = cam.transform.position.x * parallaxSpeed;
-        float distanceMoveY = cam.position.y * parallaxSpeed;
+        float distanceMoveY = cam.transform.position.x * (1 - parallaxSpeed);
 
-        transform.position = new Vector3(distanceMoveX + startPosX, distanceMoveY + startPosY, transform.position.z);
+        transform.position = new Vector3(distanceMoveX + startPosX, transform.position.y, transform.position.z);
 
         if (controlDistance > startPosX+ spriteWidth)
         {

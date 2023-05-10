@@ -46,7 +46,7 @@ MonoBehaviour:
   collisionMap: {fileID: 0}
   rock: {fileID: 11400000, guid: 6578e54f1d65f284c889789cb093d2db, type: 2}
   tunnelMap: {fileID: 0}
-  air: {fileID: 11400000, guid: 4ada69c7fa7fa1249804bbfa615fa190, type: 2}
+  air: {fileID: 11400000, guid: 470987f090eeea949b51f59f40c3b2c5, type: 2}
   ladderMap: {fileID: 0}
   ladderTile: {fileID: 11400000, guid: 481a3dc640efe3945a7db4a10ad96779, type: 2}
   spikes: {fileID: 5688924259843886722, guid: 9bf64cd7c2747364dbf01a9bc809903f, type: 3}

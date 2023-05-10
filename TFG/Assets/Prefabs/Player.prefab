@@ -143,7 +143,7 @@ GameObject:
   - component: {fileID: 4508056756513706626}
   - component: {fileID: 4508056756513706628}
   - component: {fileID: 4508056756513706629}
-  m_Layer: 13
+  m_Layer: 14
   m_Name: CrouchCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -215,7 +215,7 @@ GameObject:
   - component: {fileID: 4508056756639221643}
   m_Layer: 14
   m_Name: GroundCheck
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -493,6 +493,7 @@ MonoBehaviour:
   ladderLayer:
     serializedVersion: 2
     m_Bits: 4096
+  isInvincible: 0
   hitParticle: {fileID: 4508056756071561509}
   throwPoint: {fileID: 4508056756738473331}
   shotCadence: 0.12
@@ -500,7 +501,6 @@ MonoBehaviour:
   bullet: {fileID: 2563582582835842812, guid: af0d391a3fae8cb4c85e447132327b47, type: 3}
   freezePlayer: 0
   canMove: 1
-  foxSource: {fileID: 0}
 --- !u!50 &4508056757199590313
 Rigidbody2D:
   serializedVersion: 4

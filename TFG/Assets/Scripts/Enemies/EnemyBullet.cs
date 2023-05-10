@@ -25,14 +25,15 @@ public class EnemyBullet : Bullet
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log("Taggy shaggy: "+collision.gameObject.CompareTag("Player"));
         //Debug.Log("Yep, i've collisioned" + collision.gameObject.name);
         if (collision.gameObject.CompareTag("Player"))
         {
-            //Debug.Log("Yep, is the player");
             PlayerMovement player = collision.gameObject.GetComponent<PlayerMovement>();
+            Debug.Log("Yep, is the player: "+player);
             if (player != null)
             {
-                //Debug.Log("This is supplyween: " + enemy);
+                Debug.Log("This is supplyween: ");
                 player.TakeDamage(20f);
             }
         }

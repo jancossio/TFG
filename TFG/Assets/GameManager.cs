@@ -92,6 +92,7 @@ public class GameManager : MonoBehaviour
     public void RespawnPlayer()
     {
         playerCharacter = Instantiate(playerCharacter, respawnPlayerPos.position, respawnPlayerPos.rotation);
+        playerCharacter.GetComponent<PlayerMovement>().SetInvincibility(false);
         Debug.Log("Player Respawned in: " + respawnPlayerPos.position);
     }
 

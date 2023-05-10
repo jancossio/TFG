@@ -10,6 +10,12 @@ public class Enemy : MonoBehaviour
     protected private SpriteRenderer spriteRend;
     [SerializeField] private GameObject destroyParticle;
     public bool canMove = true;
+    protected private bool playerDamaged = true;
+
+    #region Rooms
+    public bool isBoss = false;
+    public Vector3 newMinCoords, newMaxCoords;
+    #endregion Rooms
 
     public Transform target;
     public Rigidbody2D rb;
@@ -32,6 +38,7 @@ public class Enemy : MonoBehaviour
     void FixedUpdate()
     {
         SearchForPlayer();
+        CheckCanHurt();
     }
 
     public void CheckDirection(float dir)
@@ -72,9 +79,13 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage()
     {
-        enemyHealth--;
-        anim.Play("Hit");
-        checkHealth();
+        if (!playerDamaged)
+        {
+            Debug.Log("Player taking damage: "+playerDamaged);
+            enemyHealth--;
+            anim.Play("Hit");
+            checkHealth();
+        }
     }
 
     public void checkHealth()
@@ -85,7 +96,15 @@ public class Enemy : MonoBehaviour
             destroyParticle.SetActive(true);
             spriteRend.enabled = false;
             collid.isTrigger = true;
-            Invoke("deathDestruction", 0.4f);
+            if (isBoss)
+            {
+                Invoke("GiveNewCoord", 0.5f);
+                Invoke("deathDestruction", 1.5f);
+            }
+            else
+            {
+                Invoke("deathDestruction", 0.4f);
+            }
         }
     }
 
@@ -108,30 +127,17 @@ public class Enemy : MonoBehaviour
 
     private void SpawnReward()
     {
-       int nReward = Random.Range(minChance, 15);
 
-       if(nReward <= 3)
-       {
-            reward = pine;
-       }
-       else if (nReward >= 4 && nReward <= 7)
-       {
-            reward = band;
-       }
-        else if (nReward >= 8 && nReward <= 11)
-        {
-            reward = cherrie;
-        }
-        else if (nReward >= 12 && nReward <= 13)
-       {
-            reward = first;
-       }
-       else if (nReward >= 14 && nReward <= 15)
-       {
-            reward = hearth;
-       }
+    }
 
-        GameObject obj = Instantiate(reward, transform.position, Quaternion.identity) as GameObject;
-        obj.transform.parent = null;
+    private void CheckCanHurt()
+    {
+        playerDamaged = target.GetComponent<PlayerMovement>().isInvincible;
+    }
+
+    private void GiveNewCoord()
+    {
+        GameObject PlayerCamera = FindObjectOfType<CameraFollow>().gameObject;
+        PlayerCamera.GetComponent<CameraFollow>().SetNewCheckpointBounds(newMinCoords, newMaxCoords);
     }
 }

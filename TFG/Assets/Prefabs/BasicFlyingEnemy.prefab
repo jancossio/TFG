@@ -187,7 +187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51f27e08e33bf334ca23bea487501e15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collid: {fileID: 0}
+  collid: {fileID: 6483294667194920733}
   enemyName: BasicFlyingEnemy
   enemyHealth: 2
   destroyParticle: {fileID: 7850603373329253727}
@@ -253,7 +253,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.032609224, y: 0.5794778}
+  m_Offset: {x: 0.037513614, y: 0.5794778}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -264,7 +264,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1853795, y: 0.15289974}
+  m_Size: {x: 1.122824, y: 0.15289974}
   m_EdgeRadius: 0
 --- !u!114 &7850603372602640930
 MonoBehaviour:
@@ -354,7 +354,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.031285882, y: -0.06297541}
+  m_Offset: {x: 0.033811927, y: -0.07780552}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -365,7 +365,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1658742, y: 0.8219366}
+  m_Size: {x: 1.1462233, y: 0.7922764}
   m_EdgeRadius: 0
 --- !u!114 &7850603372864549257
 MonoBehaviour:

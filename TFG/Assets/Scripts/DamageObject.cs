@@ -10,6 +10,7 @@ public class DamageObject : MonoBehaviour
     {
         if (collision.transform.CompareTag("Player"))
         {
+            Debug.Log("aaaaaahh:");
             FindObjectOfType<PlayerMovement>().TakeDamage(damageDealt);
         }
     }

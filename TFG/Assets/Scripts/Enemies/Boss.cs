@@ -318,15 +318,18 @@ public class Boss : Enemy
     public void DamageBoss()
     {
         TakeDamage();
-        weakPoint.isTrigger = true;
-        StartCoroutine(FlashHurtDelay());
+        if (!playerDamaged)
+        {
+            weakPoint.isTrigger = true;
+            StartCoroutine(FlashHurtDelay());
+        }
     }
 
     IEnumerator FlashHurtDelay()
     {
         yield return new WaitForSeconds(0.6f);
         float flashDelay = 0.0833f;
-        for (int i = 0; i < 7; i++)
+        for (int i = 0; i < 10; i++)
         {
             spriteRend.enabled = false;
             Debug.Log("Clear: " + spriteRend);

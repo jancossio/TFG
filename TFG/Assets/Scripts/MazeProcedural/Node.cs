@@ -28,6 +28,8 @@ public class Node : MonoBehaviour
     public bool leftWall = true;
     public bool rightWall = true;
 
+    public bool canBuild = true;
+
     public enum nodeState
     {
         Unvisited, Current, Done, Searching
@@ -226,107 +228,110 @@ public class Node : MonoBehaviour
         int y = 0;
         Debug.Log("Now i have room map: "+roomMap);
 
-        for (int i = 0; i < 10; i++)
+        if (canBuild)
         {
-            temp = roomMap[i];
-            int x = 0;
-            char valAir = 'a';
-            char valRock = 'r';
-            char valLadder = 'l';
-            char valThreePlatform = 't';
-            char valSixPlatform = 'k';
-            char valNinePlatform = 'n';
-            //char valLadPlatf = 'b';
-            char valCoin = 'c';
-            char valDiamond = 'd';
-            char valSpikes = 's';
-            char valTurret = 'o';
-            char valMiniEnemy = 'p';
-            char valMediEnemy = 'm';
-
-            foreach (char c in temp)
+            for (int i = 0; i < 10; i++)
             {
-                if (c.CompareTo(valRock) == 0)
+                temp = roomMap[i];
+                int x = 0;
+                char valAir = 'a';
+                char valRock = 'r';
+                char valLadder = 'l';
+                char valThreePlatform = 't';
+                char valSixPlatform = 'k';
+                char valNinePlatform = 'n';
+                //char valLadPlatf = 'b';
+                char valCoin = 'c';
+                char valDiamond = 'd';
+                char valSpikes = 's';
+                char valTurret = 'o';
+                char valMiniEnemy = 'p';
+                char valMediEnemy = 'm';
+
+                foreach (char c in temp)
                 {
-                    Vector3Int tempVec = new Vector3Int((int)transform.localPosition.x+x, (int)transform.localPosition.y+y, 0);
-                    collisionMap.SetTile(tempVec, rock);
+                    if (c.CompareTo(valRock) == 0)
+                    {
+                        Vector3Int tempVec = new Vector3Int((int)transform.localPosition.x + x, (int)transform.localPosition.y + y, 0);
+                        collisionMap.SetTile(tempVec, rock);
+                    }
+                    else if (c.CompareTo(valAir) == 0)
+                    {
+                        Vector3Int tempVec = new Vector3Int((int)transform.localPosition.x + x, (int)transform.localPosition.y + y, 0);
+                        tunnelMap.SetTile(tempVec, air);
+                    }
+                    else if (c.CompareTo(valLadder) == 0)
+                    {
+                        Vector3Int tempVec = new Vector3Int((int)transform.localPosition.x + x, (int)transform.localPosition.y + y, 0);
+                        ladderMap.SetTile(tempVec, ladderTile);
+                    }
+                    else if (c.CompareTo(valThreePlatform) == 0)
+                    {
+                        Vector3Int tempVec = new Vector3Int((int)transform.localPosition.x + x, (int)transform.localPosition.y + y, 0);
+                        tunnelMap.SetTile(tempVec, air);
+                        Vector3 objVec = new Vector3(transform.localPosition.x + x + 0.5f, transform.localPosition.y + y + 0.5f, 0);
+                        Instantiate(threePlatform, objVec, Quaternion.identity);
+                    }
+                    else if (c.CompareTo(valSixPlatform) == 0)
+                    {
+                        Vector3Int tempVec = new Vector3Int((int)transform.localPosition.x + x, (int)transform.localPosition.y + y, 0);
+                        tunnelMap.SetTile(tempVec, air);
+                        Vector3 objVec = new Vector3(transform.localPosition.x + x + 0.5f, transform.localPosition.y + y + 0.5f, 0);
+                        Instantiate(sixPlatform, objVec, Quaternion.identity);
+                    }
+                    else if (c.CompareTo(valNinePlatform) == 0)
+                    {
+                        Vector3Int tempVec = new Vector3Int((int)transform.localPosition.x + x, (int)transform.localPosition.y + y, 0);
+                        tunnelMap.SetTile(tempVec, air);
+                        Vector3 objVec = new Vector3(transform.localPosition.x + x + 0.5f, transform.localPosition.y + y + 0.5f, 0);
+                        Instantiate(ninePlatform, objVec, Quaternion.identity);
+                    }
+                    else if (c.CompareTo(valCoin) == 0)
+                    {
+                        Vector3Int tempVec = new Vector3Int((int)transform.localPosition.x + x, (int)transform.localPosition.y + y, 0);
+                        tunnelMap.SetTile(tempVec, air);
+                        Vector3 objVec = new Vector3(transform.localPosition.x + x + 0.5f, transform.localPosition.y + y + 0.5f, 0);
+                        Instantiate(coin, objVec, Quaternion.identity);
+                    }
+                    else if (c.CompareTo(valDiamond) == 0)
+                    {
+                        Vector3Int tempVec = new Vector3Int((int)transform.localPosition.x + x, (int)transform.localPosition.y + y, 0);
+                        tunnelMap.SetTile(tempVec, air);
+                        Vector3 objVec = new Vector3(transform.localPosition.x + x + 0.5f, transform.localPosition.y + y + 0.5f, 0);
+                        Instantiate(diamond, objVec, Quaternion.identity);
+                    }
+                    else if (c.CompareTo(valSpikes) == 0)
+                    {
+                        Vector3Int tempVec = new Vector3Int((int)transform.localPosition.x + x, (int)transform.localPosition.y + y, 0);
+                        tunnelMap.SetTile(tempVec, air);
+                        Vector3 objVec = new Vector3(transform.localPosition.x + x + 0.5f, transform.localPosition.y + y + 0.3f, 0);
+                        Instantiate(spikes, objVec, Quaternion.identity);
+                    }
+                    else if (c.CompareTo(valTurret) == 0)
+                    {
+                        Vector3Int tempVec = new Vector3Int((int)transform.localPosition.x + x, (int)transform.localPosition.y + y, 0);
+                        tunnelMap.SetTile(tempVec, air);
+                        Vector3 objVec = new Vector3(transform.localPosition.x + x + 0.5f, transform.localPosition.y + y + 0.6f, 0);
+                        Instantiate(turret, objVec, Quaternion.identity);
+                    }
+                    else if (c.CompareTo(valMiniEnemy) == 0)
+                    {
+                        Vector3Int tempVec = new Vector3Int((int)transform.localPosition.x + x, (int)transform.localPosition.y + y, 0);
+                        tunnelMap.SetTile(tempVec, air);
+                        Vector3 objVec = new Vector3(transform.localPosition.x + x + 0.5f, transform.localPosition.y + y + 0.9f, 0);
+                        Instantiate(miniEnemy, objVec, Quaternion.identity);
+                    }
+                    else if (c.CompareTo(valMediEnemy) == 0)
+                    {
+                        Vector3Int tempVec = new Vector3Int((int)transform.localPosition.x + x, (int)transform.localPosition.y + y, 0);
+                        tunnelMap.SetTile(tempVec, air);
+                        Vector3 objVec = new Vector3(transform.localPosition.x + x + 0.5f, transform.localPosition.y + y + 1.1f, 0);
+                        Instantiate(mediumEnemy, objVec, Quaternion.identity);
+                    }
+                    x++;
                 }
-                else if(c.CompareTo(valAir) == 0)
-                {
-                    Vector3Int tempVec = new Vector3Int((int)transform.localPosition.x + x, (int)transform.localPosition.y + y, 0);
-                    tunnelMap.SetTile(tempVec, air);
-                }
-                else if (c.CompareTo(valLadder) == 0)
-                {
-                    Vector3Int tempVec = new Vector3Int((int)transform.localPosition.x + x, (int)transform.localPosition.y + y, 0);
-                    ladderMap.SetTile(tempVec, ladderTile);
-                }
-                else if (c.CompareTo(valThreePlatform) == 0)
-                {
-                    Vector3Int tempVec = new Vector3Int((int)transform.localPosition.x + x, (int)transform.localPosition.y + y, 0);
-                    tunnelMap.SetTile(tempVec, air);
-                    Vector3 objVec = new Vector3(transform.localPosition.x +x+0.5f, transform.localPosition.y +y+0.5f, 0);
-                    Instantiate(threePlatform, objVec, Quaternion.identity);
-                }
-                else if (c.CompareTo(valSixPlatform) == 0)
-                {
-                    Vector3Int tempVec = new Vector3Int((int)transform.localPosition.x + x, (int)transform.localPosition.y + y, 0);
-                    tunnelMap.SetTile(tempVec, air);
-                    Vector3 objVec = new Vector3(transform.localPosition.x + x + 0.5f, transform.localPosition.y + y + 0.5f, 0);
-                    Instantiate(sixPlatform, objVec, Quaternion.identity);
-                }
-                else if (c.CompareTo(valNinePlatform) == 0)
-                {
-                    Vector3Int tempVec = new Vector3Int((int)transform.localPosition.x + x, (int)transform.localPosition.y + y, 0);
-                    tunnelMap.SetTile(tempVec, air);
-                    Vector3 objVec = new Vector3(transform.localPosition.x + x + 0.5f, transform.localPosition.y + y + 0.5f, 0);
-                    Instantiate(ninePlatform, objVec, Quaternion.identity);
-                }
-                else if (c.CompareTo(valCoin) == 0)
-                {
-                    Vector3Int tempVec = new Vector3Int((int)transform.localPosition.x + x, (int)transform.localPosition.y + y, 0);
-                    tunnelMap.SetTile(tempVec, air);
-                    Vector3 objVec = new Vector3(transform.localPosition.x + x+0.5f, transform.localPosition.y + y+0.5f, 0);
-                    Instantiate(coin, objVec, Quaternion.identity);
-                }
-                else if (c.CompareTo(valDiamond) == 0)
-                {
-                    Vector3Int tempVec = new Vector3Int((int)transform.localPosition.x + x, (int)transform.localPosition.y + y, 0);
-                    tunnelMap.SetTile(tempVec, air);
-                    Vector3 objVec = new Vector3(transform.localPosition.x+ x + 0.5f, transform.localPosition.y + y + 0.5f, 0);
-                    Instantiate(diamond, objVec, Quaternion.identity);
-                }
-                else if (c.CompareTo(valSpikes) == 0)
-                {
-                    Vector3Int tempVec = new Vector3Int((int)transform.localPosition.x + x, (int)transform.localPosition.y + y, 0);
-                    tunnelMap.SetTile(tempVec, air);
-                    Vector3 objVec = new Vector3(transform.localPosition.x + x + 0.5f, transform.localPosition.y + y + 0.3f, 0);
-                    Instantiate(spikes, objVec, Quaternion.identity);
-                }
-                else if (c.CompareTo(valTurret) == 0)
-                {
-                    Vector3Int tempVec = new Vector3Int((int)transform.localPosition.x + x, (int)transform.localPosition.y + y, 0);
-                    tunnelMap.SetTile(tempVec, air);
-                    Vector3 objVec = new Vector3(transform.localPosition.x + x + 0.5f, transform.localPosition.y + y + 0.6f, 0);
-                    Instantiate(turret, objVec, Quaternion.identity);
-                }
-                else if (c.CompareTo(valMiniEnemy) == 0)
-                {
-                    Vector3Int tempVec = new Vector3Int((int)transform.localPosition.x + x, (int)transform.localPosition.y + y, 0);
-                    tunnelMap.SetTile(tempVec, air);
-                    Vector3 objVec = new Vector3(transform.localPosition.x + x + 0.5f, transform.localPosition.y + y + 0.9f, 0);
-                    Instantiate(miniEnemy, objVec, Quaternion.identity);
-                }
-                else if (c.CompareTo(valMediEnemy) == 0)
-                {
-                    Vector3Int tempVec = new Vector3Int((int)transform.localPosition.x + x, (int)transform.localPosition.y + y, 0);
-                    tunnelMap.SetTile(tempVec, air);
-                    Vector3 objVec = new Vector3(transform.localPosition.x + x + 0.5f, transform.localPosition.y + y + 1.1f, 0);
-                    Instantiate(mediumEnemy, objVec, Quaternion.identity);
-                }
-                x++;
+                y--;
             }
-            y--;
         }
     }
 
@@ -396,4 +401,8 @@ public class Node : MonoBehaviour
         return currentState;
     }
 
+    public void SetCanBuild(bool permission)
+    {
+        canBuild = permission;
+    }
 }

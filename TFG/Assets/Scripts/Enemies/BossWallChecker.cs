@@ -20,6 +20,15 @@ public class BossWallChecker : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (!collision.CompareTag("Player"))
+        {
+            body.SetWallChecker(true);
+            //body.Flip();
+        }
+    }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (!collision.CompareTag("Player"))

@@ -8,6 +8,9 @@ TagManager:
   - Box
   - GameManager
   - UI
+  - GameOver
+  - GameWin
+  - Boss
   layers:
   - Default
   - TransparentFX
@@ -27,7 +30,7 @@ TagManager:
   - Object
   - Bullet
   - Barrier
-  - 
+  - Boss
   - 
   - 
   - 

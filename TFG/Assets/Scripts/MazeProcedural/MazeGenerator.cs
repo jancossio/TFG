@@ -32,6 +32,10 @@ public class MazeGenerator : MonoBehaviour
     public Node startNode = null;
     public Node exitNode = null;
 
+    public bool chosenStartNode = false;
+    public bool preMadeMaze = false;
+    //public bool buildExitStart = false;
+
     [SerializeField] GameObject InstNode;
     public GameObject ExitDoor;
     public GameObject StartPoint;
@@ -44,10 +48,13 @@ public class MazeGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        nodes = new Node[mazeNodeHeight * mazeNodeWidth];
+        if (!preMadeMaze)
+        {
+            nodes = new Node[mazeNodeHeight * mazeNodeWidth];
 
-        CreateNodes();
-        StartNodes();
+            CreateNodes();
+            SetCameraBoundaries();
+        }
 
         #region Rooms
 
@@ -88,7 +95,7 @@ public class MazeGenerator : MonoBehaviour
         upT = new string[]   { "rrrrrrrrrrrrrrrr",
                                "rrrrraaaaaaarrrr",
                                "raaaacaalaacaarr",
-                               "raaaaaaakaaaaaaa",
+                               "raaaaaaklaaaaaaa",
                                "aaaaaalalaaaaaaa",
                                "aaaaaalkaaaaaaaa",
                                "aaaaaalaaaaaaaaa",
@@ -115,7 +122,7 @@ public class MazeGenerator : MonoBehaviour
                                "aaaacamacaaaaaar",
                                "aaarrrrrrraaaaar",
                                "aaaaaaaaaaaaaaar",
-                               "raaaaaaaaasssssr",
+                               "raaaaaaaaaaasssr",
                                "rrrrrrrrrrrrrrrr"};
 
         leftUpL = new string[]{"rrraaaaaaaaaarrr",
@@ -218,10 +225,14 @@ public class MazeGenerator : MonoBehaviour
                                 "rrrrrrrrrrrrrrrr"};
         #endregion
 
-        SetCameraBoundaries();
+        StartNodes();
         CreateMazeMap();
         BuildMaze();
-        SetStartExit();
+
+        if (!preMadeMaze)
+        {
+            SetStartExit();
+        }
     }
 
     // Update is called once per frame
@@ -239,6 +250,7 @@ public class MazeGenerator : MonoBehaviour
     {
         int longestWay = 0;
         currentNode = GetStartNode();
+
         currentNode.SetState(Node.nodeState.Current);
 
         List<Node> availablesNextNodes = new List<Node>();
