@@ -162,7 +162,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7850603371725897658}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -170,7 +170,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: bbd2dc241626ba54a84e9471d7ccb71e, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -192,6 +192,9 @@ MonoBehaviour:
   enemyHealth: 2
   destroyParticle: {fileID: 7850603373329253727}
   canMove: 1
+  isBoss: 0
+  newMinCoords: {x: 0, y: 0, z: 0}
+  newMaxCoords: {x: 0, y: 0, z: 0}
   target: {fileID: 0}
   rb: {fileID: 0}
   facingRight: 1
@@ -202,6 +205,7 @@ MonoBehaviour:
   hearth: {fileID: 7768417735577073860, guid: b46c943e97fa7fe4caf408ff508bde1b, type: 3}
   cherrie: {fileID: 4645400168048846081, guid: fe5bf1e79da0f1a489ae9300008364e0, type: 3}
   moveSpeed: 1.5
+  chaseSpeed: 1.875
   patrolSpots:
   - {fileID: 7850603373364003915}
   - {fileID: 7850603371508510633}

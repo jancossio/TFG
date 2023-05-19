@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 1112187771937537224}
   - component: {fileID: 1112187771937537225}
   - component: {fileID: 1112187771937537206}
-  m_Layer: 14
+  m_Layer: 11
   m_Name: WallChecker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -366,6 +366,9 @@ MonoBehaviour:
   enemyHealth: 2
   destroyParticle: {fileID: 1112187771704842726}
   canMove: 1
+  isBoss: 0
+  newMinCoords: {x: 0, y: 0, z: 0}
+  newMaxCoords: {x: 0, y: 0, z: 0}
   target: {fileID: 0}
   rb: {fileID: 0}
   facingRight: 1
@@ -376,6 +379,7 @@ MonoBehaviour:
   hearth: {fileID: 7768417735577073860, guid: b46c943e97fa7fe4caf408ff508bde1b, type: 3}
   cherrie: {fileID: 4645400168048846081, guid: fe5bf1e79da0f1a489ae9300008364e0, type: 3}
   moveSpeed: 1
+  chaseSpeed: 1.5
   distanceChase: 7
   directionChecker: {fileID: 1112187772076495295}
   groundMask:

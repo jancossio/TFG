@@ -17,22 +17,33 @@ public class MainMenu : MonoBehaviour
         
     }
 
-    public void LevelMenuScene()
+    /*public void LevelMenuScene()
     {
         PlayerPrefs.SetInt("lifes", 4);
         PlayerPrefs.SetFloat("healthbar", 100);
-        PlayerPrefs.SetInt("actualLevel", 1);
+        PlayerPrefs.SetInt("actualLevel", 2);
         SceneManager.LoadScene("SampleScene");
-    }
+    }*/
 
     public void PlayScene()
     {
-        SceneManager.LoadScene("Level_0");
+        PlayerPrefs.SetInt("lifes", 4);
+        PlayerPrefs.SetFloat("healthbar", 100);
+        PlayerPrefs.SetInt("levelsUnlocked", 1);
+        PlayerPrefs.SetInt("NewGame", 1);
+        int tempLastScene = 2;
+        PlayerPrefs.SetInt("actualLevel", tempLastScene);
+        //int tempLastScene = PlayerPrefs.GetInt("actualLevel", 2);
+        SceneManager.LoadScene(tempLastScene);
     }
 
     public void LevelsScene()
     {
-        SceneManager.LoadScene("Levels");
+        int startedGame = PlayerPrefs.GetInt("NewGame", 0);
+        if (startedGame >= 1)
+        {
+            SceneManager.LoadScene("Levels");
+        }
     }
 
     public void TestScene()

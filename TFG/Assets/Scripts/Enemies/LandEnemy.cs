@@ -5,10 +5,12 @@ using UnityEngine;
 public class LandEnemy : Enemy
 {
     [SerializeField] private float moveSpeed;
+    [SerializeField] private float chaseSpeed;
     [SerializeField] private float distanceChase;
     [SerializeField] private Transform directionChecker;
     [SerializeField] private LayerMask groundMask;
     private float distanceChecker = 1f;
+    private float distanceChaser = 7f;
 
     private float dir;
     private bool wallChecking;
@@ -49,11 +51,15 @@ public class LandEnemy : Enemy
         {
             dir = -1f;
         }
-        CheckDirection(dir);
-        float xVal = dir * moveSpeed * 100 * Time.fixedDeltaTime;
-        Vector2 targetVelocity = new Vector2(xVal, rb.velocity.y);
-        rb.velocity = targetVelocity;
-        anim.SetBool("Idle", false);
+        RaycastHit2D ray = Physics2D.Raycast(directionChecker.position, Vector2.down, distanceChaser, groundMask);
+        if (ray.collider)
+        {
+            CheckDirection(dir);
+            float xVal = dir * moveSpeed * 100 * Time.fixedDeltaTime;
+            Vector2 targetVelocity = new Vector2(xVal, rb.velocity.y);
+            rb.velocity = targetVelocity;
+            anim.SetBool("Idle", false);
+        }
     }
 
     public void Patrol()

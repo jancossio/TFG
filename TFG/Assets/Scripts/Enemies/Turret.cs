@@ -26,7 +26,10 @@ public class Turret : Enemy
             if (Vector2.Distance(transform.position, target.position) < distanceAttack)
             {
                 AdquireTarget();
-                Attack();
+                if(enemyHealth > 0)
+                {
+                    Attack();
+                }
             }
         }
     }

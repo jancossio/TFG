@@ -162,6 +162,9 @@ MonoBehaviour:
   enemyHealth: 1
   destroyParticle: {fileID: 5653055423114276299}
   canMove: 1
+  isBoss: 0
+  newMinCoords: {x: 0, y: 0, z: 0}
+  newMaxCoords: {x: 0, y: 0, z: 0}
   target: {fileID: 0}
   rb: {fileID: 0}
   facingRight: 1
@@ -171,7 +174,8 @@ MonoBehaviour:
   first: {fileID: 6241586030349392230, guid: cdd2032a42bc3384194015b937221104, type: 3}
   hearth: {fileID: 7768417735577073860, guid: b46c943e97fa7fe4caf408ff508bde1b, type: 3}
   cherrie: {fileID: 4645400168048846081, guid: fe5bf1e79da0f1a489ae9300008364e0, type: 3}
-  moveSpeed: 2
+  moveSpeed: 1.75
+  chaseSpeed: 2.125
   patrolSpots:
   - {fileID: 5653055423185978939}
   - {fileID: 5653055423767744511}

@@ -5,6 +5,7 @@ using UnityEngine;
 public class FlyEnemy : Enemy
 {
     [SerializeField] private float moveSpeed;
+    [SerializeField] private float chaseSpeed;
     public Transform[] patrolSpots;
     [SerializeField] private float attackDistance;
     private int point = 0;
@@ -23,19 +24,22 @@ public class FlyEnemy : Enemy
     // Update is called once per frame
     void Update()
     {
-        if(attackTimer > 0)
+        if (attackTimer > 0)
         {
             attackTimer -= Time.deltaTime;
         }
         else
         {
-            if (Vector2.Distance(transform.position, target.position) < attackDistance)
+            if (target != null)
             {
-                Chase();
-            }
-            else
-            {
-                Patrol();
+                if (Vector2.Distance(transform.position, target.position) < attackDistance)
+                {
+                    Chase();
+                }
+                else
+                {
+                    Patrol();
+                }
             }
         }
     }
@@ -65,7 +69,7 @@ public class FlyEnemy : Enemy
             adquiredTarget = target.position;
         }
 
-        transform.position = Vector2.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, target.position, chaseSpeed * Time.deltaTime);
 
 
         if (Vector2.Distance(transform.position, patrolSpots[point].position) < 0.1f)

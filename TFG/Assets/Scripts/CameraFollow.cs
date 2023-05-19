@@ -4,20 +4,28 @@ public class CameraFollow : MonoBehaviour
 {
     public Transform target;
     public Vector3 minValues, maxValues;
+    public GameObject barriers;
+    public float minRespawnDistance = 8f;
+    private bool barrierDown = false;
 
     float nextTimeToSearch = 0f;
 
     [Range(1, 10)] public float smoothFactor;
-    Vector3 offset = new Vector3(0, 0, -10);
+    Vector3 offset = new Vector3(0,0,-10);
 
     private void FixedUpdate()
     {
         if (target != null)
         {
            Follow();
+           if (barrierDown)
+           {
+                CheckRespawnDistance();
+           }
         }
         else
         {
+            barrierManager(false);
             SearchForPlayer();
             return;
         }
@@ -44,6 +52,33 @@ public class CameraFollow : MonoBehaviour
         if (result != null)
         {
             target = result.transform;
+        }
+        else
+        {
+            //barrierManager(false);
+        }
+    }
+
+    void CheckRespawnDistance()
+    {
+        if (Vector2.Distance(transform.position, target.position) < minRespawnDistance){
+            barrierManager(true);
+        }
+    }
+
+    void barrierManager(bool activate)
+    {
+        if (activate)
+        {
+            barriers.SetActive(true);
+            barrierDown = false;
+            Debug.Log("BarrierIsUp");
+        }
+        else
+        {
+            barriers.SetActive(false);
+            barrierDown = true;
+            Debug.Log("BarrierIsDown");
         }
     }
 

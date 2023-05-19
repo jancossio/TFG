@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private Collider2D collid;
     [SerializeField] private string enemyName;
-    [SerializeField] private float enemyHealth;
+    [SerializeField] protected private float enemyHealth;
     protected private SpriteRenderer spriteRend;
     [SerializeField] private GameObject destroyParticle;
     public bool canMove = true;

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8665300870649879276}
   - component: {fileID: 8665300870649879267}
   - component: {fileID: 8665300870649879270}
-  m_Layer: 15
+  m_Layer: 9
   m_Name: BossCheckpoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}

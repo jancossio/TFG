@@ -13,6 +13,7 @@ public class UIMenuControler : MonoBehaviour
 
     public void Levels()
     {
+        GameManager.Instance.ResetStats();
         Time.timeScale = 1f;
         SceneManager.LoadScene("Levels");
     }
@@ -25,6 +26,7 @@ public class UIMenuControler : MonoBehaviour
 
     public void MainMenu()
     {
+        GameManager.Instance.ResetStats();
         Time.timeScale = 1f;
         if (GameManager.Instance.gameOver)
         {

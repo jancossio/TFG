@@ -161,12 +161,12 @@ public class MazeGenerator : MonoBehaviour
         horzCorridor = new string[]{"rrrrrrrrrrrrrrrr",
                                     "aaaaaaaaaaaaaaaa",
                                     "aaaaaaaaaaaaaaaa",
-                                    "alaaaacpcaaaaala",
-                                    "altaarrrrraaatla",
-                                    "alaaaaaaaaaaaala",
-                                    "alaaaacaacaaaala",
-                                    "alaaaaaaaaaaaala",
-                                    "rlaaasapasaaaalr",
+                                    "aalaaacpcaaaaala",
+                                    "atlaarrrrraaatla",
+                                    "aalaaaaaaaaaaala",
+                                    "aalaaacaacaaaala",
+                                    "aalaaaaaaaaaaala",
+                                    "ralaasapasaaaalr",
                                     "rrrrrrrrrrrrrrrr"};
 
         vertCorridor = new string[]{"raaaaaaaaaaaaaar",

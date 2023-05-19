@@ -49,23 +49,30 @@ public class Boss : Enemy
     // Update is called once per frame
     void Update()
     {
-        switch (actualState)
+        if (enemyHealth > 0)
         {
-            case stateType.idle:
-                Idle();
-                break;
-            case stateType.charge:
-                Charge();
-                break;
-            case stateType.shoot:                             
-                Shoot();
-                break;
-            case stateType.jump:
-                Jump();
-                break;
-            case stateType.punchRain:
-                PunchRain();
-                break;
+            switch (actualState)
+            {
+                case stateType.idle:
+                    Idle();
+                    break;
+                case stateType.charge:
+                    Charge();
+                    break;
+                case stateType.shoot:
+                    Shoot();
+                    break;
+                case stateType.jump:
+                    Jump();
+                    break;
+                case stateType.punchRain:
+                    PunchRain();
+                    break;
+            }
+        }
+        else
+        {
+            actualState = stateType.idle;
         }
     }
 
@@ -359,14 +366,14 @@ public class Boss : Enemy
         }
         else if (actualState == stateType.charge)
         {
-            if (Vector2.Distance(transform.position, target.position) > 6f)
+            if (Vector2.Distance(transform.position, target.position) > 7f)
             {
-                actualState = stateType.jump;
+                actualState = stateType.punchRain;
                 Debug.Log("Now is jumping");
             }
             else
             {
-                actualState = stateType.punchRain;
+                actualState = stateType.jump;
                 Debug.Log("Now is shooting");
             }
         }
@@ -383,7 +390,7 @@ public class Boss : Enemy
         }
         else if (actualState == stateType.jump)
         {
-            if (Vector2.Distance(transform.position, target.position) > 6f)
+            if (Vector2.Distance(transform.position, target.position) > 7f)
             {
                 actualState = stateType.charge;
             }
