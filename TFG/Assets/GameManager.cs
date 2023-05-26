@@ -80,7 +80,7 @@ public class GameManager : MonoBehaviour
     public void ResetStats()
     {
         lifes = 4;
-        health = 100;
+        health = 100f;
         PlayerPrefs.SetInt("lifes", lifes);
         //actualLevel = 0;
         //PlayerPrefs.SetInt("actualLevel", actualLevel);
@@ -99,7 +99,7 @@ public class GameManager : MonoBehaviour
     public void KillPlayer(PlayerMovement player)
     {
         lifes = PlayerPrefs.GetInt("lifes", 0);
-        Debug.Log("Cuanta via me quea??: "+lifes);
+        //Debug.Log("Cuanta via me quea??: "+lifes);
         if (lifes < 1)
         {
             Destroy(player.gameObject);

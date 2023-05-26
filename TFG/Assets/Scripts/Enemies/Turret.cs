@@ -7,7 +7,7 @@ public class Turret : Enemy
     private float cooldownTime;
     [SerializeField] private float distanceAttack = 11f;
     private float attackTimer;
-    private float startTimer = 2f;
+    [SerializeField] private float startTimer = 3f;
 
     [SerializeField] private GameObject bulletProjectile;
     [SerializeField] private Transform shotPoint;
@@ -26,7 +26,11 @@ public class Turret : Enemy
             if (Vector2.Distance(transform.position, target.position) < distanceAttack)
             {
                 AdquireTarget();
-                if(enemyHealth > 0)
+
+                Vector3 targetDir = target.position - transform.position;
+                float shotAngle = Vector3.Angle(transform.up, targetDir);
+                Debug.Log("shotAngle: " + shotAngle);
+                if (shotAngle >= 45f && shotAngle <= 135f)
                 {
                     Attack();
                 }

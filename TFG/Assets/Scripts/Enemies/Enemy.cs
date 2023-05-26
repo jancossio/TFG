@@ -81,7 +81,7 @@ public class Enemy : MonoBehaviour
     {
         if (!playerDamaged)
         {
-            Debug.Log("Player taking damage: "+playerDamaged);
+            //Debug.Log("Player taking damage: "+playerDamaged);
             enemyHealth--;
             anim.Play("Hit");
             checkHealth();
@@ -132,7 +132,10 @@ public class Enemy : MonoBehaviour
 
     private void CheckCanHurt()
     {
-        playerDamaged = target.GetComponent<PlayerMovement>().isInvincible;
+        if (target != null)
+        {
+            playerDamaged = target.GetComponent<PlayerMovement>().isInvincible;
+        }
     }
 
     private void GiveNewCoord()

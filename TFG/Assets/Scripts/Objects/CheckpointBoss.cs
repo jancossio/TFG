@@ -24,8 +24,9 @@ public class CheckpointBoss : Checkpoint
         {
             if (activateTimer <= 0)
             {
-                Debug.Log("Here's DaFinalBoss babyy!!");
+                //Debug.Log("Here's DaFinalBoss babyy!!");
                 GameManager.Instance.SetRespawnPosition(playerObj);
+                PlayerCamera.GetComponent<CameraFollow>().setBossActivation(true);
                 finalBoss.SetActive(true);
                 isTriggered = false;
             }

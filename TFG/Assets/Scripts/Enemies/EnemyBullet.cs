@@ -25,7 +25,7 @@ public class EnemyBullet : Bullet
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Taggy shaggy: "+collision.gameObject.CompareTag("Player"));
+        //Debug.Log("Taggy shaggy: "+collision.gameObject.CompareTag("Player"));
         //Debug.Log("Yep, i've collisioned" + collision.gameObject.name);
         if (collision.gameObject.CompareTag("Player"))
         {

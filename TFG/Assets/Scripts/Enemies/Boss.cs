@@ -5,7 +5,7 @@ using UnityEngine;
 public class Boss : Enemy
 {
     public enum stateType : int { idle = 0, charge = 1, shoot = 2, jump = 3, punchRain = 4 };
-    stateType actualState, previousState;
+    [SerializeField] private stateType actualState, previousState;
 
     [SerializeField] private float chargeSpeed = 9f;
     private float targetDistance;

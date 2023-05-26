@@ -6,7 +6,7 @@ public class Checkpoint : MonoBehaviour
 {
     public Vector3 camMinValues, camMaxValues;
     protected private bool isTriggered = false;
-    private GameObject PlayerCamera = null;
+    protected private GameObject PlayerCamera = null;
 
 
     private void Start()

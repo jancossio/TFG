@@ -7,6 +7,7 @@ public class CameraFollow : MonoBehaviour
     public GameObject barriers;
     public float minRespawnDistance = 8f;
     private bool barrierDown = false;
+    private bool bossArena = false;
 
     float nextTimeToSearch = 0f;
 
@@ -25,7 +26,10 @@ public class CameraFollow : MonoBehaviour
         }
         else
         {
-            barrierManager(false);
+            if (!bossArena)
+            {
+                barrierManager(false);
+            }
             SearchForPlayer();
             return;
         }
@@ -86,5 +90,17 @@ public class CameraFollow : MonoBehaviour
     {
         minValues = nMinBounds;
         maxValues = nMaxBounds;
+    }
+
+    public void setBossActivation(bool activated)
+    {
+        if (activated)
+        {
+            bossArena = true;
+        }
+        else
+        {
+            bossArena = false;
+        }
     }
 }
