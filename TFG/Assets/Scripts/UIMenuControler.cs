@@ -28,10 +28,6 @@ public class UIMenuControler : MonoBehaviour
     {
         GameManager.Instance.ResetStats();
         Time.timeScale = 1f;
-        if (GameManager.Instance.gameOver)
-        {
-            GameManager.Instance.ResetStats();
-        }
         SceneManager.LoadScene("MainMenu");
     }
 

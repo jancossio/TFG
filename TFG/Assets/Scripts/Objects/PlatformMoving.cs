@@ -20,7 +20,7 @@ public class PlatformMoving : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
 
         transform.position = Vector2.MoveTowards(transform.position, patrolSpots[point].position, speed * Time.deltaTime);

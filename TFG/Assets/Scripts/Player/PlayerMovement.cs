@@ -25,7 +25,6 @@ public class PlayerMovement : MonoBehaviour
     bool facingRight = true;
     public bool isGrounded;
 
-    public float fallMultiplier = 0.5f;
     bool coyoteJump;
     bool multipleJump;
 
@@ -54,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
     bool isTakingDamage = false;
     public bool isInvincible = false;
     public GameObject hitParticle;
+    public GameObject dustTrail;
 
     public Transform throwPoint;
     public float shotCadence;
@@ -79,6 +79,7 @@ public class PlayerMovement : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
 
         gravityVal = rb.gravityScale;
+        sprite.color = Color.white;
     }
 
     // Update is called once per frame
@@ -177,6 +178,23 @@ public class PlayerMovement : MonoBehaviour
        // }
 
         //Store current scale value
+        if (GroundCheck.isGrounded)
+        {
+            if (xVal < 0 || xVal > 0)
+            {
+                dustTrail.SetActive(true);
+            }
+            else
+            {
+                dustTrail.SetActive(false);
+            }
+        }
+        else
+        {
+            dustTrail.SetActive(false);
+        }
+
+
         if (dir < 0)
         {
             transform.localScale = new Vector3(-1, 1, 1);
@@ -211,8 +229,7 @@ public class PlayerMovement : MonoBehaviour
                 multipleJump = false;
                 anim.SetBool("Jump", true);
             }
-
-            if (coyoteJump)
+            else if (coyoteJump)
             {
                 multipleJump = true;
 
@@ -306,7 +323,6 @@ public class PlayerMovement : MonoBehaviour
     {
         //RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up, 3f, ladderLayer);
         //Physics2D.OverlapCircle(transform.position, 0.2f, ladderLayer);
-
 
         if (checkLadder())
         {
@@ -421,7 +437,13 @@ public class PlayerMovement : MonoBehaviour
         StartCoroutine(KillDelay());
     }
 
-     public IEnumerator KillDelay()
+    public void KillFallen()
+    {
+        FreezeRB(true);
+        StartCoroutine(KillFallenDelay());
+    }
+
+    public IEnumerator KillDelay()
      {
         anim.Play("Fox_hurt");
         yield return new WaitForSeconds(1.3f);
@@ -429,11 +451,14 @@ public class PlayerMovement : MonoBehaviour
         GameManager.Instance.KillPlayer(this);
      }
 
-    /*public void FreezePlayer(bool freezeIt)
+    public IEnumerator KillFallenDelay()
     {
-        FreezeRB(freezeIt);
-        canMove = freezeIt;
-    }*/
+        anim.Play("Fox_hurt");
+        yield return new WaitForSeconds(1.3f);
+        FreezeRB(false);
+        FindObjectOfType<LifeCount>().LoseLife();
+        GameManager.Instance.KillPlayer(this);
+    }
 
     public void FreezeRB(bool freeze)
     {

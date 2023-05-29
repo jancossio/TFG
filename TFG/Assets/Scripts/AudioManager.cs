@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager Instance = null;
+    //public static AudioManager Instance = null;
 
-    public AudioSource[] soundSFX;
+    public Sound[] soundSFX, backMusic;
 
     [SerializeField] private AudioSource SFXSource;
     [SerializeField] private AudioSource MusicSource;
@@ -14,7 +14,7 @@ public class AudioManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(Instance = null)
+        /*if(Instance = null)
         {
             Instance = this;
         }
@@ -23,7 +23,7 @@ public class AudioManager : MonoBehaviour
             Debug.Log("Más de un GameManager en escena");
             Destroy(gameObject);
         }
-        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(gameObject);*/
     }
 
     // Update is called once per frame

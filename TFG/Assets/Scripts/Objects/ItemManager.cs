@@ -95,7 +95,6 @@ public class ItemManager : MonoBehaviour
     public int checkNumPines()
     {
         return numConePines;
-        Debug.Log("Número de piñas insuficiente???");
     }
 
     public void shootPines()

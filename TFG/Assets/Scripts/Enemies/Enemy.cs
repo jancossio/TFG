@@ -81,7 +81,7 @@ public class Enemy : MonoBehaviour
     {
         if (!playerDamaged)
         {
-            //Debug.Log("Player taking damage: "+playerDamaged);
+            Debug.Log("Player taking damage: "+anim.name);
             enemyHealth--;
             anim.Play("Hit");
             checkHealth();

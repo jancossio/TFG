@@ -95,7 +95,8 @@ public class Boss : Enemy
         }
         else
         {
-            if (attackTimer <= 3)
+            //Debug.Log("Broken Timer: "+attackTimer);
+            if (attackTimer <= 0.75)
             {
                 attackTimer = startTimer;
                 Flip();
@@ -126,7 +127,7 @@ public class Boss : Enemy
         LookAtPlayer();
         if (nBlocks > 0)
         {
-            if (attackTimer <= 3)
+            if (attackTimer <= 0.75f)
             {
                 attackTimer = startTimer;
                 DropBlock();
@@ -139,7 +140,7 @@ public class Boss : Enemy
         }
         else
         {
-            if (attackTimer <= 0)
+            if (attackTimer <= 0.25)
             {
                 attackTimer = startTimer;
                 nBlocks = 6;
@@ -160,7 +161,7 @@ public class Boss : Enemy
             {
                 attackTimer = startTimer;
                 anim.Play("Shot");
-                Debug.Log(attackTimer);
+                //Debug.Log(attackTimer);
                 ShotProjectile();
                 nShots--;
 
@@ -202,6 +203,7 @@ public class Boss : Enemy
                     jumpTarget = new Vector2(target.position.x, transform.position.y + 5f);
                 }
 
+                //Debug.Log("Jumpinig to: "+jumpTarget);
                 transform.position = Vector2.MoveTowards(transform.position, jumpTarget, jumpSpeed * Time.deltaTime);
 
                 if (Vector2.Distance(transform.position, jumpTarget) < 0.1f)
@@ -233,7 +235,7 @@ public class Boss : Enemy
         else
         {
 
-            if (attackTimer <= 2)
+            if (attackTimer <= 0.5)
             {
                 attackTimer = startTimer;
                 nJumps = 3;
@@ -339,10 +341,10 @@ public class Boss : Enemy
         for (int i = 0; i < 10; i++)
         {
             spriteRend.enabled = false;
-            Debug.Log("Clear: " + spriteRend);
+            //Debug.Log("Clear: " + spriteRend);
             yield return new WaitForSeconds(flashDelay);
             spriteRend.enabled = true;
-            Debug.Log("White: " + spriteRend);
+            //Debug.Log("White: " + spriteRend);
             yield return new WaitForSeconds(flashDelay);
         }
         weakPoint.isTrigger = false;
@@ -356,7 +358,7 @@ public class Boss : Enemy
             if (Vector2.Distance(transform.position, target.position) > 8f)
             {
                 actualState = stateType.shoot;
-                Debug.Log("Now is charging");
+                Debug.Log("Now is shooting");
             }
             else
             {
@@ -369,12 +371,12 @@ public class Boss : Enemy
             if (Vector2.Distance(transform.position, target.position) > 7f)
             {
                 actualState = stateType.punchRain;
-                Debug.Log("Now is jumping");
+                Debug.Log("Now is punchRaining");
             }
             else
             {
                 actualState = stateType.jump;
-                Debug.Log("Now is shooting");
+                Debug.Log("Now is jumping");
             }
         }
         else if (actualState == stateType.shoot)
@@ -382,10 +384,12 @@ public class Boss : Enemy
             if (Vector2.Distance(transform.position, target.position) > 6f)
             {
                 actualState = stateType.charge;
+                Debug.Log("About to charge");
             }
             else
             {
                 actualState = stateType.jump;
+                Debug.Log("Now is jumping");
             }
         }
         else if (actualState == stateType.jump)
@@ -393,15 +397,18 @@ public class Boss : Enemy
             if (Vector2.Distance(transform.position, target.position) > 7f)
             {
                 actualState = stateType.charge;
+                Debug.Log("Now is charging");
             }
             else
             {
                 actualState = stateType.shoot;
+                Debug.Log("Now is shooting");
             }
         }
         else if (actualState == stateType.punchRain)
         {
             actualState = stateType.idle;
+            Debug.Log("Return to idle");
         }
     }
 }

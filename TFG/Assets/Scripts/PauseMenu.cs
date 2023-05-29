@@ -60,16 +60,16 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
-    public void Retry()
+    /*public void Retry()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
+    }*/
 
-    public void Levels()
+    /*public void Levels()
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene("Levels");
-    }
+    }*/
 
     public void NextLevel()
     {
@@ -77,16 +77,16 @@ public class PauseMenu : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
-    public void MainMenu()
+    /*public void MainMenu()
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
-    }
+    }*/
 
-    public void Options()
+    /*public void Options()
     {
         Debug.Log("An options menu should be added here");
-    }
+    }*/
 
     public void AllowPause(bool pause)
     {

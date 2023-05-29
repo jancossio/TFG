@@ -162,11 +162,11 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7850603371725897658}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 100
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -205,7 +205,7 @@ MonoBehaviour:
   hearth: {fileID: 7768417735577073860, guid: b46c943e97fa7fe4caf408ff508bde1b, type: 3}
   cherrie: {fileID: 4645400168048846081, guid: fe5bf1e79da0f1a489ae9300008364e0, type: 3}
   moveSpeed: 1.5
-  chaseSpeed: 1.875
+  chaseSpeed: 2
   patrolSpots:
   - {fileID: 7850603373364003915}
   - {fileID: 7850603371508510633}
@@ -257,7 +257,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.037513614, y: 0.5794778}
+  m_Offset: {x: 0.032933712, y: 0.5794778}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -268,7 +268,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.122824, y: 0.15289974}
+  m_Size: {x: 1.1942701, y: 0.15289974}
   m_EdgeRadius: 0
 --- !u!114 &7850603372602640930
 MonoBehaviour:

@@ -10,7 +10,7 @@ public class LandEnemy : Enemy
     [SerializeField] private Transform directionChecker;
     [SerializeField] private LayerMask groundMask;
     private float distanceChecker = 1f;
-    private float distanceChaser = 7f;
+    private float distanceChaser = 6f;
 
     private float dir;
     private bool wallChecking;

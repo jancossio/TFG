@@ -643,13 +643,15 @@ MonoBehaviour:
   first: {fileID: 0}
   hearth: {fileID: 7768417735577073860, guid: b46c943e97fa7fe4caf408ff508bde1b, type: 3}
   cherrie: {fileID: 0}
-  chargeSpeed: 7
+  actualState: 0
+  previousState: 0
+  chargeSpeed: 9
   isWalled: 0
   isGrounded: 1
   startTimer: 1
   startStateTimer: 3.5
   jumpTarget: {x: 0, y: 0}
-  jumpSpeed: 10
+  jumpSpeed: 15
   weakPoint: {fileID: 3143768345316417026}
   shotPoint: {fileID: 3143768344193791320}
   rainPoint: {fileID: 3143768345236790755}

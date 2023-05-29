@@ -5,7 +5,9 @@ public class CameraFollow : MonoBehaviour
     public Transform target;
     public Vector3 minValues, maxValues;
     public GameObject barriers;
-    public float minRespawnDistance = 8f;
+    //public float minRespawnDistance = 8f;
+    public float minYRespawnDistance = 8f;
+    public float minXRespawnDistance = 13f;
     private bool barrierDown = false;
     private bool bossArena = false;
 
@@ -26,6 +28,7 @@ public class CameraFollow : MonoBehaviour
         }
         else
         {
+            Debug.Log("Where are you");
             if (!bossArena)
             {
                 barrierManager(false);
@@ -65,9 +68,20 @@ public class CameraFollow : MonoBehaviour
 
     void CheckRespawnDistance()
     {
-        if (Vector2.Distance(transform.position, target.position) < minRespawnDistance){
+        /*if (Vector2.Distance(transform.position, target.position) < minRespawnDistance){
             barrierManager(true);
-        }
+        }*/
+
+        if (Mathf.Abs(transform.position.x - target.position.x) < minXRespawnDistance)
+        {
+            if (Mathf.Abs(transform.position.y - target.position.y) < minYRespawnDistance)
+            {
+                barrierManager(true);
+            }
+        } 
+
+        Debug.Log("CamDistanceX "+ Mathf.Abs(transform.position.x - target.position.x));
+        Debug.Log("CamDistanceY "+ Mathf.Abs(transform.position.y - target.position.y));
     }
 
     void barrierManager(bool activate)

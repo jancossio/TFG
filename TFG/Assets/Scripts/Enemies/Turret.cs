@@ -7,7 +7,7 @@ public class Turret : Enemy
     private float cooldownTime;
     [SerializeField] private float distanceAttack = 11f;
     private float attackTimer;
-    [SerializeField] private float startTimer = 3f;
+    [SerializeField] private float startTimer = 2.25f;
 
     [SerializeField] private GameObject bulletProjectile;
     [SerializeField] private Transform shotPoint;
@@ -44,7 +44,7 @@ public class Turret : Enemy
         {
             attackTimer = startTimer;
             anim.Play("Shot");
-            Invoke("ShotProjectile", 0.4f);
+            Invoke("ShotProjectile", 0.3f);
         }
         else
         {

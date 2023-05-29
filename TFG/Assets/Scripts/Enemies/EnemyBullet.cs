@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyBullet : Bullet
 {
-    private GameObject player;
+    [SerializeField] private GameObject player;
     private Vector2 direction;
 
     // Start is called before the first frame update
