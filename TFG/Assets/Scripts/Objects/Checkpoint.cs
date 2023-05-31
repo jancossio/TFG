@@ -7,6 +7,8 @@ public class Checkpoint : MonoBehaviour
     public Vector3 camMinValues, camMaxValues;
     protected private bool isTriggered = false;
     protected private GameObject PlayerCamera = null;
+    public bool sounds = true;
+    public bool isBoss = false;
 
 
     private void Start()
@@ -19,7 +21,16 @@ public class Checkpoint : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             //collision.GetComponent<PlayerRespawn>().ReachedCheckPoint(transform.position.x, transform.position.y);
-            GameManager.Instance.SetRespawnPosition(transform);
+            if (!isBoss)
+            {
+                GameManager.Instance.SetRespawnPosition(transform);
+            }
+
+            if (!isTriggered && sounds)
+            {
+                AudioManager.Instance.PlaySoundEffect("Checkpoint");
+            }
+
             isTriggered = true;
             GetComponent<Animator>().SetBool("Taken", true);
             SetCameraBounds();

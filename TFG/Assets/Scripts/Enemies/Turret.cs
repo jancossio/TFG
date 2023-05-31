@@ -55,6 +55,7 @@ public class Turret : Enemy
     private void ShotProjectile()
     {
         GameObject obj = Instantiate(bulletProjectile, shotPoint) as GameObject;
+        AudioManager.Instance.PlaySoundEffect("ThrowObject");
         obj.transform.parent = null;
     }
 

@@ -35,6 +35,7 @@ public class BoxSupply : MonoBehaviour
     {
         --health;
         //spriteRend.color = Color.black;
+        AudioManager.Instance.PlaySoundEffect("EnemyHit");
         anim.Play("boxHit");
         checkHealth();
     }
@@ -55,6 +56,7 @@ public class BoxSupply : MonoBehaviour
     public void boxDestroy()
     {
         spriteRend.enabled = false;
+        AudioManager.Instance.PlaySoundEffect("DefeatExplosion");
         Destroy(transform.parent.gameObject);
     }
 }

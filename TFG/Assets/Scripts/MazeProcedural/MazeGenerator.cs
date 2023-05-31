@@ -450,6 +450,7 @@ public class MazeGenerator : MonoBehaviour
         Debug.Log("Checkpoint is: "+startPos.transform.position);
         startPos.GetComponent<SpriteRenderer>().enabled = false;
         startPos.GetComponent<Checkpoint>().SetBounds(minCamBounds, maxCamBounds);
+        startPos.GetComponent<Checkpoint>().sounds = false;
         GameManager.Instance.SetPlayer(Player);
         GameManager.Instance.RespawnPlayer();
     }

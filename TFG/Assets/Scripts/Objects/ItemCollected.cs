@@ -17,6 +17,7 @@ public class ItemCollected : MonoBehaviour
                 gameObject.transform.GetChild(0).gameObject.SetActive(true);
 
                 FindObjectOfType<ItemManager>().itemObtained(actualItem);
+                AudioManager.Instance.PlaySoundEffect("ItemPicked");
                 Destroy(gameObject, 0.5f);
 
             }
@@ -29,6 +30,7 @@ public class ItemCollected : MonoBehaviour
                     gameObject.transform.GetChild(0).gameObject.SetActive(true);
 
                     FindObjectOfType<ItemManager>().itemObtained(actualItem);
+                    AudioManager.Instance.PlaySoundEffect("ItemPicked");
                     Destroy(gameObject, 0.5f);
                 }
             }
@@ -41,6 +43,7 @@ public class ItemCollected : MonoBehaviour
                     gameObject.transform.GetChild(0).gameObject.SetActive(true);
 
                     FindObjectOfType<ItemManager>().itemObtained(actualItem);
+                    AudioManager.Instance.PlaySoundEffect("ItemPicked");
                     Destroy(gameObject, 0.5f);
                 }
             }
@@ -55,6 +58,7 @@ public class ItemCollected : MonoBehaviour
                     gameObject.transform.GetChild(0).gameObject.SetActive(true);
 
                     FindObjectOfType<ItemManager>().itemObtained(actualItem);
+                    AudioManager.Instance.PlaySoundEffect("ItemPicked");
                     Destroy(gameObject, 0.5f);
                 }
             }

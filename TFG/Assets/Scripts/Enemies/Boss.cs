@@ -82,6 +82,7 @@ public class Boss : Enemy
         {
             dirCharge = TargetCharge();
             CheckDirection(dirCharge);
+            AudioManager.Instance.PlaySoundEffect("BossCharge");
         }
 
         if (!isWalled)
@@ -132,6 +133,10 @@ public class Boss : Enemy
                 attackTimer = startTimer;
                 DropBlock();
                 nBlocks--;
+                if (nBlocks == 5)
+                {
+                    AudioManager.Instance.PlaySoundEffect("PunchRain");
+                }
             }
             else
             {
@@ -201,6 +206,7 @@ public class Boss : Enemy
                     rbConst = rb.gravityScale;
                     rb.gravityScale = 0f;
                     jumpTarget = new Vector2(target.position.x, transform.position.y + 5f);
+                    AudioManager.Instance.PlaySoundEffect("BossJump");
                 }
 
                 //Debug.Log("Jumpinig to: "+jumpTarget);
@@ -218,6 +224,11 @@ public class Boss : Enemy
                 if (isGrounded && landedJump)
                 {
                     anim.Play("Landed");
+                    if (attackTimer >= 1f)
+                    {
+                        AudioManager.Instance.PlaySoundEffect("BossLanding");
+                    }
+
                     if (attackTimer <= 0)
                     {
                         nJumps--;
@@ -265,6 +276,7 @@ public class Boss : Enemy
         Vector2 thirdShot = new Vector2(0, 1);
         objThree.GetComponent<ConcreteBullet>().SetDirection(thirdShot);
         objThree.transform.parent = null;
+        AudioManager.Instance.PlaySoundEffect("ThrowObject");
     }
 
     private void DropBlock()
@@ -329,6 +341,7 @@ public class Boss : Enemy
         TakeDamage();
         if (!playerDamaged)
         {
+            AudioManager.Instance.PlaySoundEffect("BossDamage");
             weakPoint.isTrigger = true;
             StartCoroutine(FlashHurtDelay());
         }

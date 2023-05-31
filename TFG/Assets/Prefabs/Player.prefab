@@ -344,7 +344,7 @@ GameObject:
   - component: {fileID: 4508056756784605813}
   - component: {fileID: 4508056756784605815}
   - component: {fileID: 4508056756784605812}
-  m_Layer: 14
+  m_Layer: 19
   m_Name: WallCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -418,7 +418,7 @@ GameObject:
   - component: {fileID: 4508056757199590317}
   - component: {fileID: 4508056757199590316}
   - component: {fileID: 4508056757199590294}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -516,7 +516,6 @@ MonoBehaviour:
   crouchingCollider: {fileID: 4508056757199590316}
   canJump: 1
   isGrounded: 0
-  fallMultiplier: 0.5
   isRunning: 0
   crouchPressed: 0
   gradualJump: 1

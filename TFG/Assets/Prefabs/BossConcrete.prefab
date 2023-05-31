@@ -589,7 +589,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 100
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 8
@@ -637,12 +637,8 @@ MonoBehaviour:
   target: {fileID: 0}
   rb: {fileID: 0}
   facingRight: 0
-  minChance: 11
-  pine: {fileID: 0}
-  band: {fileID: 0}
-  first: {fileID: 0}
-  hearth: {fileID: 7768417735577073860, guid: b46c943e97fa7fe4caf408ff508bde1b, type: 3}
-  cherrie: {fileID: 0}
+  rewards:
+  - {fileID: 7768417735577073860, guid: b46c943e97fa7fe4caf408ff508bde1b, type: 3}
   actualState: 0
   previousState: 0
   chargeSpeed: 9

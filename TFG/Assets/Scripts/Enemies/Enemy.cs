@@ -21,9 +21,8 @@ public class Enemy : MonoBehaviour
     public Rigidbody2D rb;
     public bool facingRight = true;
     protected private Animator anim;
-    [SerializeField] private int minChance = 0;
-    public GameObject pine, band, first, hearth, cherrie;
-    GameObject reward = null;
+
+    public GameObject[] rewards = null;
 
     // Start is called before the first frame update
     void Start()
@@ -81,8 +80,9 @@ public class Enemy : MonoBehaviour
     {
         if (!playerDamaged)
         {
-            Debug.Log("Player taking damage: "+anim.name);
+            //Debug.Log("Player taking damage: "+anim.name);
             enemyHealth--;
+            AudioManager.Instance.PlaySoundEffect("EnemyHit");
             anim.Play("Hit");
             checkHealth();
         }
@@ -96,8 +96,11 @@ public class Enemy : MonoBehaviour
             destroyParticle.SetActive(true);
             spriteRend.enabled = false;
             collid.isTrigger = true;
+            AudioManager.Instance.PlaySoundEffect("DefeatExplosion");
             if (isBoss)
             {
+                AudioManager.Instance.PlaySoundEffect("BossVictory");
+                AudioManager.Instance.PlayMusicTrack("LevelSong");
                 Invoke("GiveNewCoord", 0.5f);
                 Invoke("deathDestruction", 1.5f);
             }
@@ -128,6 +131,10 @@ public class Enemy : MonoBehaviour
     private void SpawnReward()
     {
 
+        int nReward = Random.Range(0, rewards.Length-1);
+
+        GameObject obj = Instantiate(rewards[nReward], transform.position, Quaternion.identity) as GameObject;
+        obj.transform.parent = null;
     }
 
     private void CheckCanHurt()

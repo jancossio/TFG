@@ -7,6 +7,7 @@ public class CheckpointBoss : Checkpoint
     [SerializeField] private GameObject finalBoss;
     private float activateTimer;
     private Transform playerObj;
+    private bool canAccess = true;
     [SerializeField] private float startTimer = 1f;
 
     // Start is called before the first frame update
@@ -20,7 +21,7 @@ public class CheckpointBoss : Checkpoint
     // Update is called once per frame
     void Update()
     {
-        if (isTriggered)
+        if (isTriggered && canAccess)
         {
             if (activateTimer <= 0)
             {
@@ -28,7 +29,9 @@ public class CheckpointBoss : Checkpoint
                 GameManager.Instance.SetRespawnPosition(playerObj);
                 PlayerCamera.GetComponent<CameraFollow>().setBossActivation(true);
                 finalBoss.SetActive(true);
-                isTriggered = false;
+                AudioManager.Instance.PlayMusicTrack("BossSong");
+                //isTriggered = false;
+                canAccess = false;
             }
             else
             {
@@ -42,10 +45,6 @@ public class CheckpointBoss : Checkpoint
                 if (result != null)
                 {
                     playerObj = result.transform;
-                }
-                else
-                {
-                    //barrierManager(false);
                 }
         }
     }

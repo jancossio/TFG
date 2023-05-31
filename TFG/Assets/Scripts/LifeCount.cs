@@ -12,7 +12,7 @@ public class LifeCount : MonoBehaviour
     {
         //remainingLives = PlayerPrefs.GetInt("lifes");
         remainingLives = PlayerPrefs.GetInt("lifes", 4);
-        Debug.Log("This is my life: " + remainingLives);
+        //Debug.Log("This is my life: " + remainingLives);
         //PlayerPrefs.SetInt("lifes", remainingLives);
         for (int i=0; i< playerLives.Length; i++)
         {
@@ -36,6 +36,7 @@ public class LifeCount : MonoBehaviour
         {
             //FindObjectOfType<LevelManager>().Restart();
             remainingLives--;
+            AudioManager.Instance.PlaySoundEffect("LoseLife");
             PlayerPrefs.SetInt("lifes", remainingLives);
             playerLives[remainingLives].enabled = false;
             GameManager.Instance.StartGameOverScreen();
@@ -44,14 +45,15 @@ public class LifeCount : MonoBehaviour
         {
             //Decreases the quantity of remainigLives by one
             remainingLives--;
+            AudioManager.Instance.PlaySoundEffect("LoseLife");
             PlayerPrefs.SetInt("lifes", remainingLives);
             playerLives[remainingLives].enabled = false;
             FindObjectOfType<HealthBar>().RefillBar();
+
         }
         //PlayerPrefs.SetInt("lifes", remainingLives);
         //And, the last live on the vector is hidden
-        Debug.Log("Vidas: "+remainingLives);
-
+        //Debug.Log("Vidas: "+remainingLives);
     }
 
     public void RecoverLife()
@@ -60,7 +62,8 @@ public class LifeCount : MonoBehaviour
         remainingLives = Mathf.Clamp(remainingLives, 0, 4);
         playerLives[remainingLives-1].enabled = true;
         PlayerPrefs.SetInt("lifes", remainingLives);
-        Debug.Log("Recoverevrv " + remainingLives);
+        AudioManager.Instance.PlaySoundEffect("LifeRecover");
+        //Debug.Log("Recoverevrv " + remainingLives);
     }
 
     public bool CheckMissingLifes()

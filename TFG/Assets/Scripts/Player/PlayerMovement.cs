@@ -67,8 +67,6 @@ public class PlayerMovement : MonoBehaviour
     public bool canMove = true;
     RigidbodyConstraints2D tempConstr;
 
-    //public AudioSource foxSource;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -219,7 +217,7 @@ public class PlayerMovement : MonoBehaviour
             multipleJump = true;
             rb.velocity = Vector2.up * jumpPower;
             anim.SetBool("Jump", true);
-
+            AudioManager.Instance.PlaySoundEffect("FoxJump");
         }
         else
         {
@@ -228,6 +226,7 @@ public class PlayerMovement : MonoBehaviour
                 rb.velocity = Vector2.up * secondJump;
                 multipleJump = false;
                 anim.SetBool("Jump", true);
+                AudioManager.Instance.PlaySoundEffect("FoxJump");
             }
             else if (coyoteJump)
             {
@@ -235,6 +234,7 @@ public class PlayerMovement : MonoBehaviour
 
                 rb.velocity = Vector2.up * jumpPower;
                 anim.SetBool("Jump", true);
+                AudioManager.Instance.PlaySoundEffect("FoxJump");
             }
         }
     }
@@ -259,6 +259,7 @@ public class PlayerMovement : MonoBehaviour
                 //canMove = false;
                 //canJump = false;
                 rb.velocity = new Vector2(wallJumpDirection*wallJumpPower.x, wallJumpPower.y);
+                AudioManager.Instance.PlaySoundEffect("FoxJump");
                 //rb.AddForce(jumpForce, ForceMode2D.Impulse);
                 //rb.velocity = jumpForce;
                 anim.SetBool("Jump", true);
@@ -367,6 +368,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 FindObjectOfType<ItemManager>().shootPines();
                 GameObject obj = Instantiate(bullet, throwPoint) as GameObject;
+                AudioManager.Instance.PlaySoundEffect("ThrowObject");
                 obj.transform.parent = null;
                 shootTime = 0;
                 canShoot = false;
@@ -402,7 +404,7 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = Vector2.zero;
             rb.AddForce(new Vector2 (hitForceX, hitForceY), ForceMode2D.Impulse);
             //StartCoroutine(HurtDelay());
-            //foxSource.Play();
+            AudioManager.Instance.PlaySoundEffect("HurtPlayer");
             hitParticle.SetActive(true);
             rb.drag = 2;
             Invoke("StopDamageAnimation", 1f);
@@ -414,7 +416,6 @@ public class PlayerMovement : MonoBehaviour
         hitParticle.SetActive(false);
         rb.drag = 0;
         isTakingDamage = false;
-        //anim.Play("Fox_hurt", -1, 0f);
         StartCoroutine(FlashHurtDelay());
     }
 
@@ -445,7 +446,7 @@ public class PlayerMovement : MonoBehaviour
 
     public IEnumerator KillDelay()
      {
-        anim.Play("Fox_hurt");
+        AudioManager.Instance.PlaySoundEffect("HurtPlayer");
         yield return new WaitForSeconds(1.3f);
         FreezeRB(false);
         GameManager.Instance.KillPlayer(this);
@@ -453,7 +454,7 @@ public class PlayerMovement : MonoBehaviour
 
     public IEnumerator KillFallenDelay()
     {
-        anim.Play("Fox_hurt");
+        AudioManager.Instance.PlaySoundEffect("HurtPlayer");
         yield return new WaitForSeconds(1.3f);
         FreezeRB(false);
         FindObjectOfType<LifeCount>().LoseLife();

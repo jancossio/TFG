@@ -35,6 +35,7 @@ public class ConcreteBullet : Bullet
                 player.TakeDamage(30f);
             }
         }
+        AudioManager.Instance.PlaySoundEffect("BulletBreak");
         Destroy(gameObject);
     }
 

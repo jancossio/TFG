@@ -36,12 +36,14 @@ public class PauseMenu : MonoBehaviour
         pauseMenuScreen.SetActive(false);
         Time.timeScale = 1f;
         pausedGame = false;
+        AudioManager.Instance.PauseMusicTrack(false);
     }
     public void Pause()
     {
         pauseMenuScreen.SetActive(true);
         Time.timeScale = 0f;
         pausedGame = true;
+        AudioManager.Instance.PauseMusicTrack(true);
     }
 
     public void StopTime(bool stop)

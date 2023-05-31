@@ -12,6 +12,7 @@ public class Trampoline : MonoBehaviour
         if (collision.transform.CompareTag("Player"))
         {
             collision.gameObject.GetComponent<Rigidbody2D>().velocity = (Vector2.up * jumpForce);
+            AudioManager.Instance.PlaySoundEffect("Trampoline");
             anim.Play("Trampoline_Trigger");
         }
     }

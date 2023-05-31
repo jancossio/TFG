@@ -38,6 +38,7 @@ public class PlayerBullet : Bullet
             }
         }
         //Debug.Log("I shot a dude: " + collision.gameObject.name);
+        AudioManager.Instance.PlaySoundEffect("BulletBreak");
         Destroy(gameObject);
     }
 }

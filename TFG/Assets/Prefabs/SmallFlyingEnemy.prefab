@@ -168,12 +168,9 @@ MonoBehaviour:
   target: {fileID: 0}
   rb: {fileID: 0}
   facingRight: 1
-  minChance: 0
-  pine: {fileID: 7444079859114145031, guid: 62f38feb183df1d4ea2d83f771f1427f, type: 3}
-  band: {fileID: 4444588178022184415, guid: aba5cda9780ca024aaf718c422a12360, type: 3}
-  first: {fileID: 6241586030349392230, guid: cdd2032a42bc3384194015b937221104, type: 3}
-  hearth: {fileID: 7768417735577073860, guid: b46c943e97fa7fe4caf408ff508bde1b, type: 3}
-  cherrie: {fileID: 4645400168048846081, guid: fe5bf1e79da0f1a489ae9300008364e0, type: 3}
+  rewards:
+  - {fileID: 7444079859114145031, guid: 62f38feb183df1d4ea2d83f771f1427f, type: 3}
+  - {fileID: 4444588178022184415, guid: aba5cda9780ca024aaf718c422a12360, type: 3}
   moveSpeed: 1.75
   chaseSpeed: 2.125
   patrolSpots:

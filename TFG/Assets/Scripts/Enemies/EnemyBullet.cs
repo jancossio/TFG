@@ -37,6 +37,7 @@ public class EnemyBullet : Bullet
                 player.TakeDamage(20f);
             }
         }
+        AudioManager.Instance.PlaySoundEffect("BulletBreak");
         Destroy(gameObject);
     }
 }

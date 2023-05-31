@@ -8,12 +8,14 @@ public class UIMenuControler : MonoBehaviour
     public void Retry()
     {
         GameManager.Instance.ResetStats();
+        FindObjectOfType<ItemManager>().ResetItems();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void Levels()
     {
         GameManager.Instance.ResetStats();
+        FindObjectOfType<ItemManager>().ResetItems();
         Time.timeScale = 1f;
         SceneManager.LoadScene("Levels");
     }
@@ -27,6 +29,7 @@ public class UIMenuControler : MonoBehaviour
     public void MainMenu()
     {
         GameManager.Instance.ResetStats();
+        FindObjectOfType<ItemManager>().ResetItems();
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
     }
