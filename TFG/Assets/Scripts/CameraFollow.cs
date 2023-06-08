@@ -11,8 +11,6 @@ public class CameraFollow : MonoBehaviour
     private bool barrierDown = false;
     private bool bossArena = false;
 
-    float nextTimeToSearch = 0f;
-
     [Range(1, 10)] public float smoothFactor;
     Vector3 offset = new Vector3(0,0,-10);
 
@@ -41,8 +39,6 @@ public class CameraFollow : MonoBehaviour
     void Follow()
     {
         //Stablish minimum & maximum x, y, z values
-
-
         Vector3 targetPosition = target.position + offset;
         //Verify if targetPos is out of bounds
         Vector3 boundPosition = new Vector3(Mathf.Clamp(targetPosition.x, minValues.x, maxValues.x),
@@ -68,9 +64,6 @@ public class CameraFollow : MonoBehaviour
 
     void CheckRespawnDistance()
     {
-        /*if (Vector2.Distance(transform.position, target.position) < minRespawnDistance){
-            barrierManager(true);
-        }*/
 
         if (Mathf.Abs(transform.position.x - target.position.x) < minXRespawnDistance)
         {
@@ -79,9 +72,6 @@ public class CameraFollow : MonoBehaviour
                 barrierManager(true);
             }
         } 
-
-        Debug.Log("CamDistanceX "+ Mathf.Abs(transform.position.x - target.position.x));
-        Debug.Log("CamDistanceY "+ Mathf.Abs(transform.position.y - target.position.y));
     }
 
     void barrierManager(bool activate)
@@ -90,13 +80,13 @@ public class CameraFollow : MonoBehaviour
         {
             barriers.SetActive(true);
             barrierDown = false;
-            Debug.Log("BarrierIsUp");
+            //Debug.Log("BarrierIsUp");
         }
         else
         {
             barriers.SetActive(false);
             barrierDown = true;
-            Debug.Log("BarrierIsDown");
+            //Debug.Log("BarrierIsDown");
         }
     }
 

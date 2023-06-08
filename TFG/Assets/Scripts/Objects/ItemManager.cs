@@ -2,22 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ItemManager : MonoBehaviour
 {
-    /*public int numCherries = 0;
-    public int numDiamonds = 0;*/
 
     private int cherriesTaken = 0;
     private int diamondsTaken = 0;
     private int numConePines = 0;
 
-    bool cherriesDone = false, diamondsDone = false, allDone = false;
-
-    public Text cherriesCollected;
+    /*public Text cherriesCollected;
     public Text diamondsCollected;
-    public Text pinesAmmo;
-    private int totalCherriesInLevel;
+    public Text pinesAmmo;*/
+    public TextMeshProUGUI cherriesCollected;
+    public TextMeshProUGUI diamondsCollected;
+    public TextMeshProUGUI pinesAmmo;
 
     public enum itemType : int { Cherry=0, Diamond=1, bandAid=2, aidKit=3, life=4 };
 
@@ -28,49 +27,24 @@ public class ItemManager : MonoBehaviour
     cherriesTaken = PlayerPrefs.GetInt("cherries", 0);
     diamondsTaken = PlayerPrefs.GetInt("diamonds", 0);
     numConePines = PlayerPrefs.GetInt("pines", 0);
-    //totalCherriesInLevel = numCherries;
 }
 
     private void Update()
     {
-        //itemCheck();
         cherriesCollected.text = cherriesTaken.ToString();
         diamondsCollected.text = diamondsTaken.ToString();
         pinesAmmo.text = numConePines.ToString();
     }
-
-    /*public void itemCheck()
-    {
-        if(numCherries == 0 && !cherriesDone)
-        {
-            cherriesDone = true;
-            Debug.Log("¡Bien!, has recogido todas las cerezas.");
-        }
-
-        if (numDiamonds == 0 && !diamondsDone)
-        {
-            diamondsDone = true;
-            Debug.Log("¡Bien!, has recogido todos los diamantes.");
-        }
-
-        if (transform.childCount == 0 && !allDone)
-        {
-            allDone = true;
-            Debug.Log("¡Bien!, has recogido todos los objetos.");
-        }
-    }*/
 
     public void itemObtained(int type)
     {
         switch(type)
         {
             case 0:
-                //numCherries--;
                 cherriesTaken++;
                 PlayerPrefs.SetInt("cherries", cherriesTaken);
                 break;
             case 1:
-                //numDiamonds--;
                 diamondsTaken++;
                 PlayerPrefs.SetInt("diamonds", diamondsTaken);
                 break;

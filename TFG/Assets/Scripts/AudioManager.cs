@@ -21,7 +21,6 @@ public class AudioManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            Debug.Log("oooohohohohoho");
         }
     }
 
@@ -40,7 +39,7 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("Error!!: Sound effect not found!!");
+            //Debug.Log("Error!!: Sound effect not found!!");
         }
     }
 
@@ -55,7 +54,7 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("Error!!: Music track not found!!");
+            //Debug.Log("Error!!: Music track not found!!");
         }
     }
 
@@ -89,17 +88,4 @@ public class AudioManager : MonoBehaviour
         PlayerPrefs.SetFloat("sfxVol", newVolume);
         SFXSource.volume = newVolume;
     }
-
-    /*public void PlayEffect(AudioClip effectClip)
-    {
-        SFXSource.clip = effectClip;
-        SFXSource.Play();
-    }
-
-    public void PlayMusicTrack(AudioClip musicClip)
-    {
-        MusicSource.clip = musicClip;
-        MusicSource.Play();
-    }*/
-
 }

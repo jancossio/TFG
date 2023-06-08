@@ -15,7 +15,6 @@ public class CheckpointBoss : Checkpoint
     {
         activateTimer = startTimer;
         playerObj = GameObject.FindGameObjectWithTag("Player").transform;
-        //finalBoss = GameObject.FindGameObjectWithTag("Boss");
     }
 
     // Update is called once per frame
@@ -25,12 +24,10 @@ public class CheckpointBoss : Checkpoint
         {
             if (activateTimer <= 0)
             {
-                //Debug.Log("Here's DaFinalBoss babyy!!");
                 GameManager.Instance.SetRespawnPosition(playerObj);
                 PlayerCamera.GetComponent<CameraFollow>().setBossActivation(true);
                 finalBoss.SetActive(true);
                 AudioManager.Instance.PlayMusicTrack("BossSong");
-                //isTriggered = false;
                 canAccess = false;
             }
             else

@@ -147,7 +147,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.03810084, y: 0.067774415}
+  m_Offset: {x: 0.03810084, y: 0.19406879}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -158,7 +158,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.07787633, y: 0.7019284}
+  m_Size: {x: 0.07787633, y: 0.44933963}
   m_EdgeRadius: 0
 --- !u!114 &1112187771937537206
 MonoBehaviour:
@@ -324,7 +324,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 3
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -397,7 +397,7 @@ GameObject:
   - component: {fileID: 1742265560623390116}
   m_Layer: 0
   m_Name: WeakPoint
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -429,7 +429,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.032707214, y: 0.47933674}
+  m_Offset: {x: 0.03401947, y: 0.47933674}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -440,7 +440,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.0215912, y: 0.143538}
+  m_Size: {x: 1.0714569, y: 0.143538}
   m_EdgeRadius: 0
 --- !u!114 &1742265560623390116
 MonoBehaviour:
@@ -465,7 +465,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8312820096123911005}
   - component: {fileID: 2484668575229601073}
-  - component: {fileID: 3467483127840357912}
+  - component: {fileID: 6668209532003999458}
   m_Layer: 0
   m_Name: DealDamage
   m_TagString: Enemy
@@ -497,10 +497,10 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.03563404, y: -0.015608311}
+  m_Offset: {x: 0.03563404, y: -0.17247581}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -511,9 +511,9 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.0712681, y: 1.0312166}
+  m_Size: {x: 1.0712681, y: 1.3449516}
   m_EdgeRadius: 0
---- !u!114 &3467483127840357912
+--- !u!114 &6668209532003999458
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -522,10 +522,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2486254648547437527}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 863df536ee736764f83ae9e9ec4c2b0d, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d7b0f61716073a43ba1807080c41d0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageDealt: 20
+  damageDealt: 25
 --- !u!1 &4888633687261317317
 GameObject:
   m_ObjectHideFlags: 0

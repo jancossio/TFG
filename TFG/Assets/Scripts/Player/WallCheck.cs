@@ -8,8 +8,10 @@ public class WallCheck : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        isWalled = true;
-        //Debug.Log("Layer: "+ collision.gameObject.layer);
+        if(collision.gameObject.layer != 15)
+        {
+            isWalled = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)

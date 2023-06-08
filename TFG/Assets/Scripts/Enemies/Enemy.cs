@@ -46,7 +46,6 @@ public class Enemy : MonoBehaviour
         {
             if (!facingRight)
             {
-                //Debug.Log("Flipped to right.");
                 Flip();
             }
 
@@ -55,7 +54,6 @@ public class Enemy : MonoBehaviour
         {
             if (facingRight)
             {
-                //Debug.Log("Flipped to left.");
                 Flip();
             }
 

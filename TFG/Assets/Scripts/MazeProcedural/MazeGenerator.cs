@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using UnityEngine.UI;
 
 public class MazeGenerator : MonoBehaviour
 {
@@ -16,12 +15,9 @@ public class MazeGenerator : MonoBehaviour
     public int mazeNodeWidth;
     private float roomHeight = 10;
     private float roomWidth = 16;
-    public Node[] nodes;
+    public Node[] mazeNodes;
     Node currentNode = null;
     Node nextNode = null;
-    //Node tempNode = null;
-    private int currentNodePosX = 0;
-    private int currentNodePosY = 0;
 
 
     private string[] cross, rightT, leftT, upT, downT, rightUpL, leftUpL, rightDownL, leftDownL, horzCorridor, vertCorridor, caveRight, caveLeft, caveUp, caveDown;
@@ -50,7 +46,7 @@ public class MazeGenerator : MonoBehaviour
     {
         if (!preMadeMaze)
         {
-            nodes = new Node[mazeNodeHeight * mazeNodeWidth];
+            mazeNodes = new Node[mazeNodeHeight * mazeNodeWidth];
 
             CreateNodes();
             SetCameraBoundaries();
@@ -58,7 +54,7 @@ public class MazeGenerator : MonoBehaviour
 
         #region Rooms
 
-
+        //blueprints for every chamber
         cross = new string[] { "rrraaaaaaaaaarrr",
                                "rraaaaaaaaaaaarr",
                                "raaaaaaaaaaaaarr",
@@ -83,17 +79,17 @@ public class MazeGenerator : MonoBehaviour
 
         leftT = new string[]  {"rrrraaaaaaaarrrr",
                                "raaaaaaaaaaaaaar",
-                               "raalacaaacaaaaar",
-                               "raalrrrrrrraaaar",
-                               "raalaaaaaaaaaaaa",
-                               "ratlaaaaaaaaaaaa",
-                               "raalaaaaaaaaaaar",
-                               "raalaaaaaaaaaarr",
-                               "rcalaracarmcarrr",
+                               "raaaaaaaaaaaaaar",
+                               "raalacaaacalaaaa",
+                               "raalrrrrrrrlaaaa",
+                               "ratlaaaaaaalaaaa",
+                               "raalaaaaaaalaaar",
+                               "raalaaaaaaalaarr",
+                               "rcalaracarmlcrrr",
                                "rrrrrratarrrrrrr"};
 
         upT = new string[]   { "rrrrrrrrrrrrrrrr",
-                               "rrrrraaaaaaarrrr",
+                               "rraaaaaaaaaarrrr",
                                "raaaacaalaacaarr",
                                "raaaaaaklaaaaaaa",
                                "aaaaaalalaaaaaaa",
@@ -116,13 +112,13 @@ public class MazeGenerator : MonoBehaviour
 
         rightUpL = new string[]{"rrraaaaaaaaaarrr",
                                "rraaaaaaaaaaaaar",
-                               "raaaaaaaaacapcar",
+                               "raaaaaaaaacaacar",
                                "raaaaaaaarrrrrrr",
                                "aaaaaaaaaaaaaaar",
-                               "aaaacamacaaaaaar",
+                               "aaaacaaacaaaaaar",
                                "aaarrrrrrraaaaar",
                                "aaaaaaaaaaaaaaar",
-                               "raaaaaaaaaaasssr",
+                               "raaaaaaamaaaassr",
                                "rrrrrrrrrrrrrrrr"};
 
         leftUpL = new string[]{"rrraaaaaaaaaarrr",
@@ -192,8 +188,8 @@ public class MazeGenerator : MonoBehaviour
                                  "rrrrrrrrrrrrrrrr"};
 
         caveLeft = new string[]{"rrrrrrrrrrrrrrrr",
-                                "raararaaaaraarar",
-                                "rldraaaaaaraaaar",
+                                "raaaaaaaaaaaaaar",
+                                "rldraaaaaaaaaaar",
                                 "rlrraaaaaaaaaaar",
                                 "rlraacaaacaaaaar",
                                 "rlrarrrrrrraaaar",
@@ -203,7 +199,7 @@ public class MazeGenerator : MonoBehaviour
                                 "rrrrrrrrrrrrrrrr"};
 
         caveUp = new string[]{"rrrrrrrrrrrrrrrr",
-                              "rrraraaararaarrr",
+                              "raaaaaaaaaaaarrr",
                               "raaaaaaaaaaaarar",
                               "raaaaaaaaaaaaaar",
                               "raaaacaaacaaaaar",
@@ -255,17 +251,13 @@ public class MazeGenerator : MonoBehaviour
 
         List<Node> availablesNextNodes = new List<Node>();
 
-        while (visitedNodes.Count < nodes.Length)
+        while (visitedNodes.Count < mazeNodes.Length)
         {
             availablesNextNodes = currentNode.GetAdjacentNeighbours();
 
             if (availablesNextNodes.Count > 0)
             {
                 nextNode = availablesNextNodes[Random.Range(0, availablesNextNodes.Count - 1)];
-                //Debug.Log("NextCardinal: " + cardinal);
-                //nextNode = currentNode.GetNeighbourByDirection(cardinal);
-                //nextNode = availablesNextNodes[cardinal];
-                //Debug.Log("NextNodeCard: " + nextNode);
                 int cardinal = currentNode.GetdirectionByNeighbour(nextNode);
                 Debug.Log("From: " +currentNode.transform.position+" To: "+nextNode.transform.position);
                 switch (cardinal)
@@ -291,62 +283,66 @@ public class MazeGenerator : MonoBehaviour
                 nextNode.SetState(Node.nodeState.Current);
                 mazePath.Push(currentNode);
 
-                if (!visitedNodes.Contains(currentNode))
+                /*if (!visitedNodes.Contains(currentNode))
                 {
                     visitedNodes.Push(currentNode);
-                }
+                }*/
 
                 currentNode = nextNode;
-                Debug.Log("The node length is: " + nodes.Length);
+                Debug.Log("The node length is: " + mazeNodes.Length);
             }
             else
             {
                 currentNode.SetState(Node.nodeState.Done);
 
                 if (!visitedNodes.Contains(currentNode))
-                 {
+                {
                      visitedNodes.Push(currentNode);
-                 }
+                }
 
-                    if (currentNode != mazePath.Peek())
+                if (currentNode != mazePath.Peek())
+                {
+                    if(longestWay < mazePath.Count)
                     {
-                        if(longestWay < mazePath.Count)
-                        {
-                            exitNode = currentNode;
-                            longestWay = mazePath.Count;
-                        }
+                        exitNode = currentNode;
+                        longestWay = mazePath.Count;
+                    }
+
+                    currentNode = mazePath.Peek();
+                }
+                else
+                {
+                    mazePath.Pop();
+
+                    if (mazePath.Count >= 1)
+                    {
+                        //Debug.Log("The node is done: " + currentNode);
                         currentNode = mazePath.Peek();
                     }
-                    else
-                    {
-                        mazePath.Pop();
+                }
 
-                        if (mazePath.Count >= 1)
-                        {
-                            currentNode = mazePath.Peek();
-                        }
-                    }
-                Debug.Log("The stack num is: " + mazePath.Count);
+                Debug.Log("Total nodes visited: " + visitedNodes.Count);
             }
 
         }
-        Debug.Log("Now im free: ");
+        //Debug.Log("Now im free: ");
     }
 
     Node GetStartNode()
     {
-        int randomNode = Random.Range(0, nodes.Length);
-        Debug.Log("Randooooom: "+ randomNode);
-        startNode = nodes[randomNode];
+        int randomNode = Random.Range(0, mazeNodes.Length);
+        startNode = mazeNodes[randomNode];
         return startNode;
     }
 
     void BuildMaze()
     {
+        Debug.Log("Total nodes visited posterior: " + visitedNodes.Count);
+
         Node currentBuildNode;
-        for(int i=0; i<nodes.Length; i++)
+        for(int i=0; i< mazeNodes.Length; i++)
         {
-           currentBuildNode = nodes[i];
+           currentBuildNode = mazeNodes[i];
            currentBuildNode.BuildRoom();
            //Debug.Log("Node: "+i+" Type: "+currentBuildNode.ReturnType());
         }
@@ -417,8 +413,8 @@ public class MazeGenerator : MonoBehaviour
             {
                 Vector3 tempVec = new Vector3(transform.position.x+(x*16), transform.position.y + (y *10), 0);
                 GameObject obj = Instantiate(InstNode, tempVec, Quaternion.identity) as GameObject;
-                nodes[temp] = obj.GetComponent<Node>();
-                nodes[temp].SetTilemaps(collisionMap, tunnelMap, laddersMap);
+                mazeNodes[temp] = obj.GetComponent<Node>();
+                mazeNodes[temp].SetTilemaps(collisionMap, tunnelMap, laddersMap);
                 temp++;
             }
         }
@@ -428,10 +424,10 @@ public class MazeGenerator : MonoBehaviour
     {
         Node tempNode = null;
 
-        for(int i = 0; i<nodes.Length; i++)
+        for(int i = 0; i< mazeNodes.Length; i++)
         {
-            tempNode = nodes[i];
-            tempNode.SetNeighbours(nodes);
+            tempNode = mazeNodes[i];
+            tempNode.SetNeighbours(mazeNodes);
         }
     }
 
@@ -443,7 +439,7 @@ public class MazeGenerator : MonoBehaviour
         //exit.GetComponent<EndingDoor>().SetParameters(DoorText, NextLevel);
 
         //Beggining
-        Vector3 startTemp = new Vector3((startNode.transform.position.x + 8.5f), (startNode.transform.position.y - 3f), 0);
+        Vector3 startTemp = new Vector3((startNode.transform.position.x + 8.5f), (startNode.transform.position.y), 0);
         Debug.Log("StartPos is: "+startTemp);
         GameObject startPos = Instantiate(StartPoint, startTemp, Quaternion.identity) as GameObject;
         GameManager.Instance.SetRespawnPosition(startPos.transform);

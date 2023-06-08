@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5059078058943224542}
   - component: {fileID: 9016384382928093900}
-  m_Layer: 8
+  m_Layer: 15
   m_Name: tileset-sliced_5 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7129432542173161077}
   - component: {fileID: 4677779697743196357}
-  m_Layer: 8
+  m_Layer: 15
   m_Name: tileset-sliced_5 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 8056586969284624377}
   - component: {fileID: 8988342576118392945}
   - component: {fileID: 8909145418947621876}
-  m_Layer: 8
+  m_Layer: 15
   m_Name: PlatformBySix
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -322,7 +322,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6736431546578975949}
   - component: {fileID: 6587374314642527456}
-  m_Layer: 8
+  m_Layer: 15
   m_Name: tileset-sliced_5 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -404,7 +404,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3184939439710560170}
   - component: {fileID: 695600303177733322}
-  m_Layer: 8
+  m_Layer: 15
   m_Name: tileset-sliced_5 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -486,7 +486,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5421283793662783242}
   - component: {fileID: 3401751896581777335}
-  m_Layer: 8
+  m_Layer: 15
   m_Name: tileset-sliced_5 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -11,7 +11,6 @@ public class IAPrimary : MonoBehaviour
 
     public float startTimer = 2f;
     private float Timer;
-    private bool facingRight = false;
 
     private int point = 0;
     private Vector2 pos;

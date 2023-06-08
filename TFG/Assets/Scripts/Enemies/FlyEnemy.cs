@@ -12,7 +12,7 @@ public class FlyEnemy : Enemy
     private bool finishedAttack = false;
     private Vector2 adquiredTarget;
 
-    public float startTimer = 1.5f;
+    public float startTimer = 2f;
     private float attackTimer;
 
     // Start is called before the first frame update

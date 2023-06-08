@@ -8,9 +8,6 @@ public class LandEnemy : Enemy
     [SerializeField] private float chaseSpeed;
     [SerializeField] private float distanceChase;
     [SerializeField] private Transform directionChecker;
-    [SerializeField] private LayerMask groundMask;
-    private float distanceChecker = 1f;
-    private float distanceChaser = 6f;
 
     private float dir;
     private bool wallChecking;
@@ -34,24 +31,27 @@ public class LandEnemy : Enemy
             if (Vector2.Distance(transform.position, target.position) < distanceChase)
             {
                 Chase(target);
-                //Debug.Log("Im gonna find you");
             }
             else
             {
                 Patrol();
-                //Debug.Log("Just patroling");
             }
         }
     }
 
     private void Chase(Transform target)
     {
-        dir = 1f;
-        if (transform.position.x > target.position.x)
+        //dir = 1f;
+        float dirTemp = transform.position.x - target.position.x;
+        if (dirTemp > 0.3f)
         {
             dir = -1f;
         }
-        RaycastHit2D ray = Physics2D.Raycast(directionChecker.position, Vector2.down, distanceChaser, groundMask);
+        else if (dirTemp < -0.3f)
+        {
+            dir = 1;
+        }
+        RaycastHit2D ray = Physics2D.Raycast(directionChecker.position, Vector2.down, 7f);
         if (ray.collider)
         {
             CheckDirection(dir);
@@ -66,7 +66,7 @@ public class LandEnemy : Enemy
     {
         dir = 1f;
 
-        RaycastHit2D ray = Physics2D.Raycast(directionChecker.position, Vector2.down, distanceChecker, groundMask);
+        RaycastHit2D ray = Physics2D.Raycast(directionChecker.position, Vector2.down, 1f);
         if (!ray.collider)
         {
             cornerChecking = true;

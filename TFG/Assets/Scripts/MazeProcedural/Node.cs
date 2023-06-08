@@ -223,7 +223,7 @@ public class Node : MonoBehaviour
     public void BuildRoom()
     {
         string[] roomMap = new string[10];
-        roomMap = FindObjectOfType<MazeGenerator>().GetRoomMap(currentType);
+        roomMap = FindObjectOfType<MazeManager>().GetRoomMap(currentType);
         string temp;
         int y = 0;
         Debug.Log("Now i have room map: "+roomMap);
@@ -342,7 +342,6 @@ public class Node : MonoBehaviour
         nodeVector = nodesVar;
         int neighbourIndex = 0;
         int nNeighbours = 0;
-        bool done = false;
 
         while (neighbourIndex < nodesVar.Length)
         {

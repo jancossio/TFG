@@ -28,17 +28,12 @@ public class PlayerMovement : MonoBehaviour
     bool coyoteJump;
     bool multipleJump;
 
-    int totalJumps = 2;
-    int availableJumps;
-
     public bool isRunning = false;
 
     float runSpeedModifier = 1.25f;
     float crouchSpeedModifier = 0.5f;
 
     public bool crouchPressed = false;
-
-    public bool gradualJump = true;
 
     private float wallSlideSpeed = 2f;
     public bool isWallSliding;
@@ -57,8 +52,6 @@ public class PlayerMovement : MonoBehaviour
 
     public Transform throwPoint;
     public float shotCadence;
-    float shootTime;
-    bool shotFlag = false;
 
     public bool canShoot = true;
     [SerializeField] GameObject bullet;
@@ -70,7 +63,6 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        availableJumps = totalJumps;
 
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -104,11 +96,6 @@ public class PlayerMovement : MonoBehaviour
         {
             Jump();
         }
-
-       /* if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
-        }*/
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
             isRunning = true;
@@ -156,8 +143,6 @@ public class PlayerMovement : MonoBehaviour
 
         #region Move&Run
         //Setting X value using dir & speed
-        /*if (canMove)
-        {*/
             float xVal = dir * speed * 100 * Time.fixedDeltaTime;
             if (isRunning)
             {
@@ -204,7 +189,6 @@ public class PlayerMovement : MonoBehaviour
             facingRight = true;
         }
         //Idle: 0, Walk: 5, Run: 7.5
-        //Debug.Log(rb.velocity.x);
         anim.SetFloat("xVelocity", Mathf.Abs(rb.velocity.x));
         #endregion
     }
@@ -245,7 +229,6 @@ public class PlayerMovement : MonoBehaviour
         {
             if (!isWallSliding)
             {
-                //availableJumps = totalJumps;
                 multipleJump = false;
             }
             isWallSliding = true;
@@ -256,12 +239,8 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetButtonDown("Jump"))
             {
                 isWallJumping = true;
-                //canMove = false;
-                //canJump = false;
                 rb.velocity = new Vector2(wallJumpDirection*wallJumpPower.x, wallJumpPower.y);
                 AudioManager.Instance.PlaySoundEffect("FoxJump");
-                //rb.AddForce(jumpForce, ForceMode2D.Impulse);
-                //rb.velocity = jumpForce;
                 anim.SetBool("Jump", true);
                 if (transform.localScale.x != wallJumpDirection)
                 {
@@ -290,9 +269,8 @@ public class PlayerMovement : MonoBehaviour
         {
             isGrounded = true;
             canJump = true;
-            //canMove = true;
             if (!wasGrounded){
-                //availableJumps = totalJumps;
+
                 multipleJump = false;
             }
         }
@@ -370,7 +348,6 @@ public class PlayerMovement : MonoBehaviour
                 GameObject obj = Instantiate(bullet, throwPoint) as GameObject;
                 AudioManager.Instance.PlaySoundEffect("ThrowObject");
                 obj.transform.parent = null;
-                shootTime = 0;
                 canShoot = false;
                 StartCoroutine(shotDelay());
             }
@@ -403,7 +380,6 @@ public class PlayerMovement : MonoBehaviour
             float hitForceY = 17f;
             rb.velocity = Vector2.zero;
             rb.AddForce(new Vector2 (hitForceX, hitForceY), ForceMode2D.Impulse);
-            //StartCoroutine(HurtDelay());
             AudioManager.Instance.PlaySoundEffect("HurtPlayer");
             hitParticle.SetActive(true);
             rb.drag = 2;

@@ -79,9 +79,6 @@ public class LifeCount : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            RecoverLife();
-        }
+        
     }
 }

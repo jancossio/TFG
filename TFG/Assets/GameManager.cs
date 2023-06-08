@@ -22,28 +22,13 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        /*if(Instance != null && Instance != this)
-        {
-            Destroy(this);
-        }
-        else
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }*/
 
         if (Instance == null)
         {
-            //Instance = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
             Instance = this;
         }
-        /*else if(Instance != this)
-        {
-            Debug.Log("Más de un GameManager en escena");
-            Destroy(gameObject);
-        }*/
 
-        StartPlayer();
+        //StartPlayer();
 
         lifes = 4;
         health = 100f;
@@ -82,8 +67,6 @@ public class GameManager : MonoBehaviour
         lifes = 4;
         health = 100f;
         PlayerPrefs.SetInt("lifes", lifes);
-        //actualLevel = 0;
-        //PlayerPrefs.SetInt("actualLevel", actualLevel);
         PlayerPrefs.SetFloat("healthbar", health);
         points = 0;
     }
@@ -94,39 +77,22 @@ public class GameManager : MonoBehaviour
         playerCharacter = Instantiate(playerCharacter, respawnPlayerPos.position, respawnPlayerPos.rotation);
         AudioManager.Instance.PlaySoundEffect("RespawnPlayer");
         playerCharacter.GetComponent<PlayerMovement>().SetInvincibility(false);
-        Debug.Log("Player Respawned in: " + respawnPlayerPos.position);
     }
 
     public void KillPlayer(PlayerMovement player)
     {
         lifes = PlayerPrefs.GetInt("lifes", 0);
-        //Debug.Log("Cuanta via me quea??: "+lifes);
         if (lifes < 1)
         {
             Destroy(player.gameObject);
-            //AudioManager.Instance.PlaySoundEffect("DefeatExplosion");
         }
         else
         {
             lifes--;
-            //FreezePlayer(false);
             Instance.RespawnPlayer();
             Destroy(player.gameObject);
-            //AudioManager.Instance.PlaySoundEffect("DefeatExplosion");
         }
     }
-
-
-    /*private void FreezePlayer(bool freeze)
-    {
-        playerCharacter.GetComponent<PlayerMovement>().FreezeRB(freeze);
-
-        GameObject player = playerCharacter.gameObject;
-        if (player != null)
-        {
-            player.GetComponent<PlayerMovement>().FreezePlayer(freeze);
-        }
-    }*/
 
     public void preparePlayerLevel(int nLevel)
     {
@@ -141,9 +107,7 @@ public class GameManager : MonoBehaviour
 
     public void StartScreenWin()
     {
-        //Debug.Log("You win Man!!");
         CanPause(false);
-        //FreezePlayer(true);
         FindObjectOfType<PauseMenu>().StopTime(true);
         AudioManager.Instance.StopMusicTrack();
         AudioManager.Instance.PlaySoundEffect("LevelWon");
@@ -154,8 +118,6 @@ public class GameManager : MonoBehaviour
     {
         gameOver = true;
         CanPause(false);
-        //FreezePlayer(true);
-        //FindObjectOfType<PauseMenu>().StopTime(true);
         AudioManager.Instance.StopMusicTrack();
         AudioManager.Instance.PlaySoundEffect("GameOver");
         gameOverUI.SetActive(true);

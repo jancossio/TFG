@@ -5,7 +5,7 @@ using UnityEngine;
 public class Turret : Enemy
 {
     private float cooldownTime;
-    [SerializeField] private float distanceAttack = 11f;
+    [SerializeField] private float distanceAttack = 9f;
     private float attackTimer;
     [SerializeField] private float startTimer = 2.25f;
 
@@ -30,7 +30,7 @@ public class Turret : Enemy
                 Vector3 targetDir = target.position - transform.position;
                 float shotAngle = Vector3.Angle(transform.up, targetDir);
                 Debug.Log("shotAngle: " + shotAngle);
-                if (shotAngle >= 45f && shotAngle <= 135f)
+                if (shotAngle >= 35f && shotAngle <= 170f)
                 {
                     Attack();
                 }

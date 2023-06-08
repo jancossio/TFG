@@ -40,7 +40,7 @@ public class Platform : MonoBehaviour
             waitTime = startTime;
         }
 
-            if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
         {
             if (waitTime <= 0)
             {
